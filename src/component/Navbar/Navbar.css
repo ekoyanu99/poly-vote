@@ -1,0 +1,62 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+nav {
+    display: flex;
+    height: 11vh;
+    background: #5DA7DB;
+    justify-content: space-around;
+    position: sticky;
+    top: 0;
+    align-items: center;
+}
+
+nav .header {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+nav .header:hover {
+    cursor: pointer;
+}
+
+nav .navbar-links {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    cursor: pointer;
+}
+
+nav .navbar-links a {
+    font-size: 17px;
+    font-weight: normal;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+nav .navbar-links a:hover {
+    cursor: pointer;
+    color: black;
+}
+
+nav .burger-menu {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+
+.nav-active {
+    color: black;
+}

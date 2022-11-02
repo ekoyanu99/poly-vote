@@ -1,38 +1,109 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h1 {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+code {
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  background-color: #f1f1f1;
+  padding: 2px;
+  font-size: 105%;
+  border-radius: 6px;
+  border: 1px solid;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container-main {
+  background-color: none;
+  padding: 1%;
+  margin: 11px;
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
+  overflow: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.container-item {
+  transition: ease all 0.5s;
+  background-color: #f2f2f2;
+  border-radius: 7px;
+  width: 977px;
+  padding: 17px;
+  margin: 17px auto;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  display: flex;
+  overflow: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.title {
+  text-transform: capitalize;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.container-list {
+  width: 100%;
+  padding: 11px;
+  margin: 3px auto;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  overflow: auto;
+}
+.center-items {
+  display: grid;
+  place-items: center;
+}
+
+@media all and (max-width: 1020px) {
+  .container-item {
+    width: 777px;
   }
-  to {
-    transform: rotate(360deg);
+}
+@media all and (max-width: 900px) {
+  .container-item {
+    width: 800px;
+    display: block;
   }
+}
+@media all and (max-width: 850px) {
+  .container-item {
+    width: 700px;
+  }
+}
+@media all and (max-width: 750px) {
+  .container-item {
+    width: 600px;
+  }
+}
+@media all and (max-width: 650px) {
+  .container-item {
+    width: 400px;
+  }
+}
+@media all and (max-width: 400px) {
+  .container-item {
+    width: 300px;
+  }
+}
+
+.info,
+.attention,
+.alert,
+.success {
+  border: 1px solid black;
+  margin-top: 11px;
+  margin-bottom: 11px px;
+}
+.info {
+  background-color: #ddffff;
+}
+.attention {
+  background-color: #fffbdd;
+}
+.success {
+  background-color: #ddffdd;
 }
