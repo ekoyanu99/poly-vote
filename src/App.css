@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,700&display=swap");
 .App {
   text-align: center;
 }
@@ -35,4 +36,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+p {
+  color: black;
 }
