@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Navbar from '../../Navbar/Navigation';
-import NavbarAdmin from '../../Navbar/NavigationAdmin';
+import Navbar from '../../Navbar/NavbarUser';
+import NavbarAdmin from '../../Navbar/NavbarAdmin';
 import Loader from '../../Loader';
 
 import getWeb3 from '../../../getWeb3';
@@ -102,7 +102,7 @@ export default class Verification extends Component {
                 {voter.isVerified ? (
                     <div className="container-list success">
                         <p style={{ margin: "7px 0px" }}>AC: {voter.address}</p>
-                        <table>
+                        <table className='table table-bordered'>
                             <tr>
                                 <th>Name</th>
                                 <th>Phone</th>
@@ -120,7 +120,7 @@ export default class Verification extends Component {
                     className="container-list attention"
                     style={{ display: voter.isVerified ? "none" : null }}
                 >
-                    <table>
+                    <table className='table table-bordered'>
                         <tr>
                             <th>Account address</th>
                             <td>{voter.address}</td>

@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 // Components
-import Navbar from './Navbar/Navigation';
-import NavbarAdmin from './Navbar/NavigationAdmin';
+import Navbar from './Navbar/NavbarUser';
+import NavbarAdmin from './Navbar/NavbarAdmin';
 import UserHome from './UserHome';
 import StartEnd from './StartEnd';
 import ElectionStatus from './ElectionStatus';

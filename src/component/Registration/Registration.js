@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-import Navbar from '../Navbar/Navigation';
-import NavbarAdmin from '../Navbar/NavigationAdmin';
+import Navbar from '../Navbar/NavbarUser';
+import NavbarAdmin from '../Navbar/NavbarAdmin';
 import NotInit from '../NotInit';
 import Loader from '../Loader';
 
 import getWeb3 from '../../getWeb3';
 import Election from '../utils/Election.json';
 
-import './Registration.css';
+//import './Registration.css';
 
 export default class Registration extends Component {
     constructor(props) {
@@ -83,7 +83,7 @@ export default class Registration extends Component {
             this.setState({ voterCount: voterCount });
 
             // Loading all the voters
-            for (let i = 0; i < this.state.voterCount; i++) {
+            for (let i = 0; i < 3; i++) {
                 const voterAddress = await this.state.ElectionInstance.methods
                     .voters(i)
                     .call();
@@ -151,93 +151,90 @@ export default class Registration extends Component {
                     <NotInit />
                 ) : (
                     <>
-                        <div className="container-item info">
-                            <p>Total registered voters: {this.state.voters.length}</p>
-                        </div>
-                        <div className="container-main">
-                            <h3>Registration</h3>
-                            <small>Register to vote.</small>
-                            <div className="container-item">
-                                <form>
-                                    <div className="div-li">
-                                        <label className={"label-r"}>
-                                            Account Address
-                                            <input
-                                                className={"input-r"}
-                                                type="text"
-                                                value={this.state.account}
-                                                style={{ width: "400px" }}
-                                            />{" "}
-                                        </label>
+                        <div className='container pb-2 pt-10'>
+                            <div className='row'>
+                                <div className='col-lg-6 pb-2 mb-2'>
+                                    <div className="">
+                                        <h5>Registration</h5>
+                                        <small>Register to vote.</small>
+                                        <div className="container-item">
+                                            <form>
+                                                <div className="mb-3">
+                                                    <label className={"form-label"}>
+                                                        Account Address
+                                                        <input
+                                                            className={"form-control"}
+                                                            type="text"
+                                                            value={this.state.account}
+                                                            style={{ width: "400px" }}
+                                                        />{" "}
+                                                    </label>
+                                                </div>
+                                                <div className="mb-3">
+                                                    <label className={"form-label"}>
+                                                        Name
+                                                        <input
+                                                            className={"form-control"}
+                                                            type="text"
+                                                            placeholder="eg. Ava"
+                                                            value={this.state.voterName}
+                                                            onChange={this.updateVoterName}
+                                                        />{" "}
+                                                    </label>
+                                                </div>
+                                                <div className="mb-3">
+                                                    <label className={"form-label"}>
+                                                        Phone number <span style={{ color: "tomato" }}>*</span>
+                                                        <input
+                                                            className={"form-control"}
+                                                            type="number"
+                                                            placeholder="eg. 8231234567"
+                                                            value={this.state.voterPhone}
+                                                            onChange={this.updateVoterPhone}
+                                                        />
+                                                    </label>
+                                                </div>
+                                                <p className="note">
+                                                    <span style={{ color: "tomato" }}> Note: </span>
+                                                    <br /> Make sure your account address and Phone number are
+                                                    correct. <br /> Admin might not approve your account if the
+                                                    provided Phone number nub does not matches the account
+                                                    address registered in admins catalogue.
+                                                </p>
+                                                <button
+                                                    className="btn-add btn btn-primary"
+                                                    disabled={
+                                                        this.state.voterPhone.length !== 10 ||
+                                                        this.state.currentVoter.isVerified
+                                                    }
+                                                    onClick={this.registerAsVoter}
+                                                >
+                                                    {this.state.currentVoter.isRegistered
+                                                        ? "Update"
+                                                        : "Register"}
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div className="div-li">
-                                        <label className={"label-r"}>
-                                            Name
-                                            <input
-                                                className={"input-r"}
-                                                type="text"
-                                                placeholder="eg. Ava"
-                                                value={this.state.voterName}
-                                                onChange={this.updateVoterName}
-                                            />{" "}
-                                        </label>
-                                    </div>
-                                    <div className="div-li">
-                                        <label className={"label-r"}>
-                                            Phone number <span style={{ color: "tomato" }}>*</span>
-                                            <input
-                                                className={"input-r"}
-                                                type="number"
-                                                placeholder="eg. 9841234567"
-                                                value={this.state.voterPhone}
-                                                onChange={this.updateVoterPhone}
-                                            />
-                                        </label>
-                                    </div>
-                                    <p className="note">
-                                        <span style={{ color: "tomato" }}> Note: </span>
-                                        <br /> Make sure your account address and Phone number are
-                                        correct. <br /> Admin might not approve your account if the
-                                        provided Phone number nub does not matches the account
-                                        address registered in admins catalogue.
-                                    </p>
-                                    <button
-                                        className="btn-add"
-                                        disabled={
-                                            this.state.voterPhone.length !== 10 ||
-                                            this.state.currentVoter.isVerified
-                                        }
-                                        onClick={this.registerAsVoter}
+                                </div>
+                                <div className='col-lg-6 pt-2 mt-2'>
+                                    <div
+                                        className="container-main"
+                                        style={{
+                                            borderTop: this.state.currentVoter.isRegistered
+                                                ? null
+                                                : "1px solid",
+                                        }}
                                     >
-                                        {this.state.currentVoter.isRegistered
-                                            ? "Update"
-                                            : "Register"}
-                                    </button>
-                                </form>
+                                        {loadCurrentVoter(
+                                            this.state.currentVoter,
+                                            this.state.currentVoter.isRegistered
+                                        )}
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
-                        <div
-                            className="container-main"
-                            style={{
-                                borderTop: this.state.currentVoter.isRegistered
-                                    ? null
-                                    : "1px solid",
-                            }}
-                        >
-                            {loadCurrentVoter(
-                                this.state.currentVoter,
-                                this.state.currentVoter.isRegistered
-                            )}
-                        </div>
-                        {this.state.isAdmin ? (
-                            <div
-                                className="container-main"
-                                style={{ borderTop: "1px solid" }}
-                            >
-                                <small>TotalVoters: {this.state.voters.length}</small>
-                                {loadAllVoters(this.state.voters)}
-                            </div>
-                        ) : null}
                     </>
                 )}
             </>
@@ -252,10 +249,11 @@ export function loadCurrentVoter(voter, isRegistered) {
             >
                 <center>Your Registered Info</center>
             </div>
+            <br></br>
             <div
                 className={"container-list " + (isRegistered ? "success" : "attention")}
             >
-                <table>
+                <table className='table'>
                     <tr>
                         <th>Account Address</th>
                         <td>{voter.address}</td>
@@ -282,50 +280,6 @@ export function loadCurrentVoter(voter, isRegistered) {
                     </tr>
                 </table>
             </div>
-        </>
-    );
-}
-export function loadAllVoters(voters) {
-    const renderAllVoters = (voter) => {
-        return (
-            <>
-                <div className="container-list success">
-                    <table>
-                        <tr>
-                            <th>Account address</th>
-                            <td>{voter.address}</td>
-                        </tr>
-                        <tr>
-                            <th>Name</th>
-                            <td>{voter.name}</td>
-                        </tr>
-                        <tr>
-                            <th>Phone</th>
-                            <td>{voter.phone}</td>
-                        </tr>
-                        <tr>
-                            <th>Voted</th>
-                            <td>{voter.hasVoted ? "True" : "False"}</td>
-                        </tr>
-                        <tr>
-                            <th>Verified</th>
-                            <td>{voter.isVerified ? "True" : "False"}</td>
-                        </tr>
-                        <tr>
-                            <th>Registered</th>
-                            <td>{voter.isRegistered ? "True" : "False"}</td>
-                        </tr>
-                    </table>
-                </div>
-            </>
-        );
-    };
-    return (
-        <>
-            <div className="container-item success">
-                <center>List of voters</center>
-            </div>
-            {voters.map(renderAllVoters)}
         </>
     );
 }

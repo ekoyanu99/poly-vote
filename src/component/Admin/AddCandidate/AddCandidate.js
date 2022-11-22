@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Navbar from '../../Navbar/Navigation';
-import NavbarAdmin from '../../Navbar/NavigationAdmin';
+import Navbar from '../../Navbar/NavbarUser';
+import NavbarAdmin from '../../Navbar/NavbarAdmin';
 import Loader from '../../Loader';
 
 import getWeb3 from '../../../getWeb3';
@@ -148,7 +148,7 @@ export default class AddCandidate extends Component {
                                 />
                             </label>
                             <button
-                                className="btn-add"
+                                className="btn btn-primary"
                                 disabled={
                                     this.state.header.length < 3 || this.state.header.length > 21
                                 }

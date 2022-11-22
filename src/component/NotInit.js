@@ -1,15 +1,14 @@
 // Node module
 import React from "react";
+import { Spin } from 'antd';
+import './Loader.css';
 
 const NotInit = () => {
-    // Component: Displaying election not initialize message.
     return (
-        <div className="container-item info">
-            <center>
-                <h3>The election has not been initialize.</h3>
-                <p>Please Wait..</p>
-            </center>
+        <div className="loader">
+            <Spin tip='The election has not been initialize, please wait...' />
         </div>
+
     );
 };
 export default NotInit;

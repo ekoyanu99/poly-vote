@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 
-import Navbar from '../Navbar/Navigation';
-import NavbarAdmin from '../Navbar/NavigationAdmin';
+import Navbar from '../Navbar/NavbarUser';
+import NavbarAdmin from '../Navbar/NavbarAdmin';
 import NotInit from '../NotInit';
 import Loader from '../Loader';
 
 import getWeb3 from '../../getWeb3';
 import Election from '../utils/Election.json';
 
-import './Result.css';
+// import './Result.css';
 
 export default class Result extends Component {
     constructor(props) {
@@ -109,21 +108,7 @@ export default class Result extends Component {
                     {!this.state.isElStarted && !this.state.isElEnded ? (
                         <NotInit />
                     ) : this.state.isElStarted && !this.state.isElEnded ? (
-                        // <div className="container-item attention">
-                        //     <center>
-                        //         <h3>The election is being conducted at the movement.</h3>
-                        //         <p>Result will be displayed once the election has ended.</p>
-                        //         <p>Go ahead and cast your vote {"(if not already)"}.</p>
-                        //         <br />
-                        //         <Link
-                        //             to="/Voting"
-                        //             style={{ color: "black", textDecoration: "underline" }}
-                        //         >
-                        //             Voting Page
-                        //         </Link>
-                        //     </center>
-                        // </div>
-                        displayResults(this.state.candidates)
+                        temporaryResults(this.state.candidates)
                     ) : !this.state.isElStarted && this.state.isElEnded ? (
                         displayResults(this.state.candidates)
                     ) : null}
@@ -131,6 +116,45 @@ export default class Result extends Component {
             </>
         );
     }
+}
+
+
+export function temporaryResults(candidates) {
+    const renderResults = (candidate) => {
+        return (
+            <tr>
+                <td>{candidate.id}</td>
+                <td>{candidate.header}</td>
+                <td>{candidate.voteCount}</td>
+            </tr>
+        );
+    };
+    return (
+        <>
+            <div className="container-main" style={{ borderTop: "1px solid" }}>
+                <h2>Temporary Results</h2>
+                <small>Total candidates: {candidates.length}</small>
+                {candidates.length < 1 ? (
+                    <div className="container attention">
+                        <center>No candidates.</center>
+                    </div>
+                ) : (
+                    <>
+                        <div className="container">
+                            <table className='table table-bordered'>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Candidate</th>
+                                    <th>Votes</th>
+                                </tr>
+                                {candidates.map(renderResults)}
+                            </table>
+                        </div>
+                    </>
+                )}
+            </div>
+        </>
+    );
 }
 
 function displayWinner(candidates) {
@@ -186,13 +210,13 @@ export function displayResults(candidates) {
                 <h2>Results</h2>
                 <small>Total candidates: {candidates.length}</small>
                 {candidates.length < 1 ? (
-                    <div className="container-item attention">
+                    <div className="container attention">
                         <center>No candidates.</center>
                     </div>
                 ) : (
                     <>
-                        <div className="container-item">
-                            <table>
+                        <div className="container">
+                            <table className='table table-bordered'>
                                 <tr>
                                     <th>Id</th>
                                     <th>Candidate</th>
@@ -202,7 +226,7 @@ export function displayResults(candidates) {
                             </table>
                         </div>
                         <div
-                            className="container-item"
+                            className="container"
                             style={{ border: "1px solid black" }}
                         >
                             <center>That is all.</center>

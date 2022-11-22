@@ -13,6 +13,7 @@ import Registration from './component/Registration/Registration';
 import Footer from './component/Footer/Footer';
 
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class App extends Component {
   render() {

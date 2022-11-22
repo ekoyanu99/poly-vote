@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Navbar from '../Navbar/Navigation';
-import NavbarAdmin from '../Navbar/NavigationAdmin';
+import Navbar from '../Navbar/NavbarUser';
+import NavbarAdmin from '../Navbar/NavbarAdmin';
 import NotInit from '../NotInit';
 import Loader from '../Loader';
 
 import getWeb3 from '../../getWeb3';
 import Election from '../utils/Election.json';
 
-import './Voting.css';
+//import './Voting.css';
 
 export default class Voting extends Component {
     constructor(props) {
@@ -132,25 +132,27 @@ export default class Voting extends Component {
             }
         };
         return (
-            <div className="container-item">
-                <div className="candidate-info">
-                    <h2>
-                        {candidate.header} <small>#{candidate.id}</small>
-                    </h2>
-                    <p className="slogan">{candidate.slogan}</p>
-                </div>
-                <div className="vote-btn-container">
-                    <button
-                        onClick={() => confirmVote(candidate.id, candidate.header)}
-                        className="vote-bth"
-                        disabled={
-                            !this.state.currentVoter.isRegistered ||
-                            !this.state.currentVoter.isVerified ||
-                            this.state.currentVoter.hasVoted
-                        }
-                    >
-                        Vote
-                    </button>
+            <div className="container">
+                <div className='card-group'>
+                    <div className="card">
+                        <h2>
+                            {candidate.header} <small>#{candidate.id}</small>
+                        </h2>
+                        <p className="slogan">{candidate.slogan}</p>
+                        <button
+                            onClick={() => confirmVote(candidate.id, candidate.header)}
+                            className="btn btn-dark"
+                            disabled={
+                                !this.state.currentVoter.isRegistered ||
+                                !this.state.currentVoter.isVerified ||
+                                this.state.currentVoter.hasVoted
+                            }
+                        >
+                            Vote
+                        </button>
+                    </div>
+                    <div className="vote-btn-container">
+                    </div>
                 </div>
             </div>
         );
@@ -174,39 +176,64 @@ export default class Voting extends Component {
                         <NotInit />
                     ) : this.state.isElStarted && !this.state.isElEnded ? (
                         <>
+                            <div className="container-main">
+                                <h2>Candidates</h2>
+                                <small>Total candidates: {this.state.candidates.length}</small>
+                                {this.state.candidates.length < 1 ? (
+                                    <div className="container attention">
+                                        <center>Not one to vote for.</center>
+                                    </div>
+                                ) : (
+                                    <>
+                                        {this.state.candidates.map(this.renderCandidates)}
+                                    </>
+                                )}
+                            </div>
                             {this.state.currentVoter.isRegistered ? (
                                 this.state.currentVoter.isVerified ? (
                                     this.state.currentVoter.hasVoted ? (
-                                        <div className="container-item success">
+                                        <div className="container success">
                                             <div>
                                                 <strong>You've casted your vote.</strong>
                                                 <p />
-                                                <center>
+                                                <button className='btn btn-outline-primary'>
                                                     <Link
                                                         to="/Results"
                                                         style={{
                                                             color: "black",
-                                                            textDecoration: "underline",
+                                                            textDecoration: "none",
                                                         }}
                                                     >
                                                         See Results
                                                     </Link>
-                                                </center>
+                                                </button>
+                                                <p />
+                                                <button className='btn btn-outline-primary'>
+                                                    <Link
+                                                        to="/MintNFT"
+                                                        style={{
+                                                            color: "black",
+                                                            textDecoration: "none",
+                                                        }}
+                                                    >
+                                                        MintNFT
+                                                    </Link>
+                                                </button>
                                             </div>
                                         </div>
                                     ) : (
-                                        <div className="container-item info">
+                                        <div className="container info">
                                             <center>Go ahead and cast your vote.</center>
                                         </div>
                                     )
                                 ) : (
-                                    <div className="container-item attention">
+                                    <div className="container attention">
                                         <center>Please wait for admin to verify.</center>
                                     </div>
                                 )
                             ) : (
                                 <>
-                                    <div className="container-item attention">
+                                    <div className="container attention">
                                         <center>
                                             <p>You're not registered. Please register first.</p>
                                             <br />
@@ -220,29 +247,10 @@ export default class Voting extends Component {
                                     </div>
                                 </>
                             )}
-                            <div className="container-main">
-                                <h2>Candidates</h2>
-                                <small>Total candidates: {this.state.candidates.length}</small>
-                                {this.state.candidates.length < 1 ? (
-                                    <div className="container-item attention">
-                                        <center>Not one to vote for.</center>
-                                    </div>
-                                ) : (
-                                    <>
-                                        {this.state.candidates.map(this.renderCandidates)}
-                                        <div
-                                            className="container-item"
-                                            style={{ border: "1px solid black" }}
-                                        >
-                                            <center>That is all.</center>
-                                        </div>
-                                    </>
-                                )}
-                            </div>
                         </>
                     ) : !this.state.isElStarted && this.state.isElEnded ? (
                         <>
-                            <div className="container-item attention">
+                            <div className="container attention">
                                 <center>
                                     <h3>The Election ended.</h3>
                                     <br />
