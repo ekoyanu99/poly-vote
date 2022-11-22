@@ -21,8 +21,8 @@ export default class Voting extends Component {
             isAdmin: false,
             candidateCount: undefined,
             candidates: [],
-            isElStarted: false,
-            isElEnded: false,
+            elStarted: false,
+            elEnded: false,
             currentVoter: {
                 address: undefined,
                 name: null,
@@ -70,9 +70,9 @@ export default class Voting extends Component {
 
             // Get start and end values
             const start = await this.state.ElectionInstance.methods.getStart().call();
-            this.setState({ isElStarted: start });
+            this.setState({ elStarted: start });
             const end = await this.state.ElectionInstance.methods.getEnd().call();
-            this.setState({ isElEnded: end });
+            this.setState({ elEnded: end });
 
             // Loading Candidates details
             for (let i = 1; i <= this.state.candidateCount; i++) {
@@ -172,9 +172,9 @@ export default class Voting extends Component {
             <>
                 {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
                 <div>
-                    {!this.state.isElStarted && !this.state.isElEnded ? (
+                    {!this.state.elStarted && !this.state.elEnded ? (
                         <NotInit />
-                    ) : this.state.isElStarted && !this.state.isElEnded ? (
+                    ) : this.state.elStarted && !this.state.elEnded ? (
                         <>
                             <div className="container-main">
                                 <h2>Candidates</h2>
@@ -248,7 +248,7 @@ export default class Voting extends Component {
                                 </>
                             )}
                         </>
-                    ) : !this.state.isElStarted && this.state.isElEnded ? (
+                    ) : !this.state.elStarted && this.state.elEnded ? (
                         <>
                             <div className="container attention">
                                 <center>

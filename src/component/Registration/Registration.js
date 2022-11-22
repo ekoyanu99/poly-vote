@@ -18,8 +18,8 @@ export default class Registration extends Component {
             web3: null,
             account: null,
             isAdmin: false,
-            isElStarted: false,
-            isElEnded: false,
+            elStarted: false,
+            elEnded: false,
             voterCount: undefined,
             voterName: "",
             voterPhone: "",
@@ -72,9 +72,9 @@ export default class Registration extends Component {
 
             // Get start and end values
             const start = await this.state.ElectionInstance.methods.getStart().call();
-            this.setState({ isElStarted: start });
+            this.setState({ elStarted: start });
             const end = await this.state.ElectionInstance.methods.getEnd().call();
-            this.setState({ isElEnded: end });
+            this.setState({ elEnded: end });
 
             // Total number of voters
             const voterCount = await this.state.ElectionInstance.methods
@@ -147,7 +147,7 @@ export default class Registration extends Component {
         return (
             <>
                 {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-                {!this.state.isElStarted && !this.state.isElEnded ? (
+                {!this.state.elStarted && !this.state.elEnded ? (
                     <NotInit />
                 ) : (
                     <>
