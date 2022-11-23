@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
+// import './App.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
+// const Home = lazy(()=>import('./component/Home'));
+// const test = lazy(()=>import('./component/test')); 
+// const AddCandidate = lazy(()=>import('./component/Admin/AddCandidate/AddCandidate'));
+// const Verification = lazy(()=>import('./component/Admin/Verification/Verification'));
+
+// const Voting = lazy(()=>import('./component/Voting/Voting'));
+// const Results = lazy(()=>import('./component/Results/Result'));
+// const Registration = lazy(()=>import('./component/Registration/Registration'));
+
+// const Footer = lazy(()=>import('./component/Footer/Footer'));
+
 import Home from './component/Home';
 import test from './component/test';
 import AddCandidate from './component/Admin/AddCandidate/AddCandidate';
