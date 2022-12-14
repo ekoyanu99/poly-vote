@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.21 <0.9.0;
+pragma solidity ^0.8.9;
 
 contract Election {
     address public admin;
@@ -8,7 +8,7 @@ contract Election {
     bool start;
     bool end;
 
-    constructor() public {
+    constructor() {
         // Initilizing default values
         admin = msg.sender;
         candidateCount = 0;
@@ -37,18 +37,20 @@ contract Election {
     mapping(uint256 => Candidate) public candidateDetails;
 
     // Adding new candidates
-    function addCandidate(string memory _header, string memory _slogan)
+    function addCandidate(
+        string memory _header,
+        string memory _slogan
+    )
         public
         // Only admin can add
         onlyAdmin
     {
-        Candidate memory newCandidate =
-            Candidate({
-                candidateId: candidateCount,
-                header: _header,
-                slogan: _slogan,
-                voteCount: 0
-            });
+        Candidate memory newCandidate = Candidate({
+            candidateId: candidateCount,
+            header: _header,
+            slogan: _slogan,
+            voteCount: 0
+        });
         candidateDetails[candidateCount] = newCandidate;
         candidateCount += 1;
     }
@@ -132,22 +134,24 @@ contract Election {
 
     // Request to be added as voter
     function registerAsVoter(string memory _name, string memory _phone) public {
-        Voter memory newVoter =
-            Voter({
-                voterAddress: msg.sender,
-                name: _name,
-                phone: _phone,
-                hasVoted: false,
-                isVerified: false,
-                isRegistered: true
-            });
+        Voter memory newVoter = Voter({
+            voterAddress: msg.sender,
+            name: _name,
+            phone: _phone,
+            hasVoted: false,
+            isVerified: false,
+            isRegistered: true
+        });
         voterDetails[msg.sender] = newVoter;
         voters.push(msg.sender);
         voterCount += 1;
     }
 
     // Verify voter
-    function verifyVoter(bool _verifedStatus, address voterAddress)
+    function verifyVoter(
+        bool _verifedStatus,
+        address voterAddress
+    )
         public
         // Only admin can verify
         onlyAdmin
