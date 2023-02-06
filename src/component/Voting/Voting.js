@@ -132,28 +132,23 @@ export default class Voting extends Component {
             }
         };
         return (
-            <div className="container">
-                <div className='card-group'>
-                    <div className="card">
-                        <h2>
-                            {candidate.header} <small>#{candidate.id}</small>
-                        </h2>
-                        <p className="slogan">{candidate.slogan}</p>
-                    </div>
-                    <div className="vote-btn-container">
-                        <button
-                            onClick={() => confirmVote(candidate.id, candidate.header)}
-                            className="btn btn-dark"
-                            disabled={
-                                !this.state.currentVoter.isRegistered ||
-                                !this.state.currentVoter.isVerified ||
-                                this.state.currentVoter.hasVoted
-                            }
-                        >
-                            Vote
-                        </button>
-                    </div>
-                </div>
+            <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
+
+                <p className="text-white">{candidate.header}</p> <small className='text-white'>#{candidate.id}</small>
+                <p className="text-white">{candidate.slogan}</p>
+
+                <button
+                    type='button'
+                    onClick={() => confirmVote(candidate.id, candidate.header)}
+                    className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer"
+                    disabled={
+                        !this.state.currentVoter.isRegistered ||
+                        !this.state.currentVoter.isVerified ||
+                        this.state.currentVoter.hasVoted
+                    }
+                >
+                    Vote
+                </button>
             </div>
         );
     };
@@ -162,108 +157,121 @@ export default class Voting extends Component {
         if (!this.state.web3) {
             return (
                 <>
-                    {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-                    <Loader />
+                    <div className='min-h-screen'>
+                        <div className='gradient-bg-welcome'>
+                            <Navbar />
+                            <Loader />
+                        </div>
+                    </div>
                 </>
             );
         }
 
         return (
             <>
-                {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-                <div>
-                    {!this.state.elStarted && !this.state.elEnded ? (
-                        <NotInit />
-                    ) : this.state.elStarted && !this.state.elEnded ? (
-                        <>
-                            <div className="container-main">
-                                <h2>Candidates</h2>
-                                <small>Total candidates: {this.state.candidates.length}</small>
-                                {this.state.candidates.length < 1 ? (
-                                    <div className="container attention">
-                                        <center>Not one to vote for.</center>
-                                    </div>
-                                ) : (
-                                    <>
-                                        {this.state.candidates.map(this.renderCandidates)}
-                                    </>
-                                )}
-                            </div>
-                            {this.state.currentVoter.isRegistered ? (
-                                this.state.currentVoter.isVerified ? (
-                                    this.state.currentVoter.hasVoted ? (
-                                        <div className="container success">
-                                            <div>
-                                                <strong>You've casted your vote.</strong>
-                                                <p />
-                                                <button className='btn btn-outline-primary'>
-                                                    <Link
-                                                        to="/Results"
-                                                        style={{
-                                                            color: "black",
-                                                            textDecoration: "none",
-                                                        }}
-                                                    >
-                                                        See Results
-                                                    </Link>
-                                                </button>
-                                                <p />
-                                                <button className='btn btn-outline-primary'>
-                                                    <Link
-                                                        to="/MintNFT"
-                                                        style={{
-                                                            color: "black",
-                                                            textDecoration: "none",
-                                                        }}
-                                                    >
-                                                        MintNFT
-                                                    </Link>
-                                                </button>
+                <div className='min-h-screen'>
+                    <div className='gradient-bg-welcome'>
+                        {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
+
+                        <div>
+                            {!this.state.elStarted && !this.state.elEnded ? (
+                                <NotInit />
+                            ) : this.state.elStarted && !this.state.elEnded ? (
+                                <>
+                                    <div className="flex w-full justify-center items-center">
+                                        <div className='flex mf:flex-row flex-col items-start justify-between md:p-10 py-6 px-2'>
+                                            <div className='flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10'>
+                                                <h2 className='className="text-3xl sm:text-5xl text-white text-gradient py-1'>Candidates</h2>
+                                                <small className='text-white'>Total candidates: {this.state.candidates.length}</small>
+                                                {this.state.candidates.length < 1 ? (
+                                                    <div className="container attention">
+                                                        <center className='text-white'>Not one to vote for.</center>
+                                                    </div>
+                                                ) : (
+                                                    <>
+                                                        {this.state.candidates.map(this.renderCandidates)}
+                                                    </>
+                                                )}
                                             </div>
                                         </div>
-                                    ) : (
-                                        <div className="container info">
-                                            <center>Go ahead and cast your vote.</center>
-                                        </div>
-                                    )
-                                ) : (
-                                    <div className="container attention">
-                                        <center>Please wait for admin to verify.</center>
                                     </div>
-                                )
-                            ) : (
+                                    {this.state.currentVoter.isRegistered ? (
+                                        this.state.currentVoter.isVerified ? (
+                                            this.state.currentVoter.hasVoted ? (
+                                                <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
+                                                    <div>
+                                                        <p className='text-white font-bold'>You've casted your vote.</p>
+                                                        <p />
+                                                        <button className='text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer'>
+                                                            <Link
+                                                                to="/Results"
+                                                                style={{
+                                                                    color: "white",
+                                                                    textDecoration: "none",
+                                                                }}
+                                                            >
+                                                                See Results
+                                                            </Link>
+                                                        </button>
+                                                        <p />
+                                                        <button className='text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer'>
+                                                            <Link
+                                                                to="/MintNFT"
+                                                                style={{
+                                                                    color: "white",
+                                                                    textDecoration: "none",
+                                                                }}
+                                                            >
+                                                                MintNFT
+                                                            </Link>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="container info">
+                                                    <center className='text-white'>Go ahead and cast your vote.</center>
+                                                </div>
+                                            )
+                                        ) : (
+                                            <div className="container attention">
+                                                <center className='text-white'>Please wait for admin to verify.</center>
+                                            </div>
+                                        )
+                                    ) : (
+                                        <>
+                                            <div className="container attention">
+                                                <center>
+                                                    <p className='text-white'>You're not registered. Please register first.</p>
+                                                    <br />
+                                                    <Link
+                                                        to="/Registration"
+                                                        style={{ color: "white", textDecoration: "underline" }}
+                                                    >
+                                                        Registration Page
+                                                    </Link>
+                                                </center>
+                                            </div>
+                                        </>
+                                    )}
+                                </>
+                            ) : !this.state.elStarted && this.state.elEnded ? (
                                 <>
                                     <div className="container attention">
                                         <center>
-                                            <p>You're not registered. Please register first.</p>
+                                            <h3>The Election ended.</h3>
                                             <br />
                                             <Link
-                                                to="/Registration"
+                                                to="/Results"
                                                 style={{ color: "black", textDecoration: "underline" }}
                                             >
-                                                Registration Page
+                                                See results
                                             </Link>
                                         </center>
                                     </div>
                                 </>
-                            )}
-                        </>
-                    ) : !this.state.elStarted && this.state.elEnded ? (
-                        <>
-                            <div className="container attention">
-                                <center>
-                                    <h3>The Election ended.</h3>
-                                    <br />
-                                    <Link
-                                        to="/Results"
-                                        style={{ color: "black", textDecoration: "underline" }}
-                                    >
-                                        See results
-                                    </Link>
-                                </center>
-                            </div>
-                        </>
-                    ) : null}
+                            ) : null}
+                        </div>
+                    </div>
                 </div>
             </>
         );

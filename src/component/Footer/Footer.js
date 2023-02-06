@@ -1,38 +1,46 @@
-import React from 'react'
-import "./Footer.css"
+import React from "react";
 
-const Footer = () => {
-    return (
-        <>
-            <footer class="text-center text-white fixed-bottom bg-primary">
-                <div className='container p-2 pb-2'>
-                    <div className='row'>
-                        <div className='col-6 mr-2'>
-                            <a
-                                className="btn btn-outline-light btn-floating m-1"
-                                href="https://www.linkedin.com/in/eko-yanuarso-budi/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a
-                                className="btn btn-outline-light btn-floating m-1"
-                                href="https://github.com/ekoyanu99"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                        <div className='col m-2'>
-                            Made with <i className="fas fa-heartbeat" /> by PolyVote Team
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </>
-    )
-}
+// import logo from "../../images/logo.png";
 
-export default Footer
+const Footer = () => (
+    <div className="w-full flex md:justify-center justify-between items-center flex-col p-4 gradient-bg-footer">
+        <div className="w-full flex sm:flex-row flex-col justify-between items-center my-4">
+            <div className="flex flex-[0.5] justify-center items-center">
+                {/* <img src={logo} alt="logo" className="w-32" /> */}
+                <a href="/"><p className="text-cyan-400">PolyVote</p></a>
+            </div>
+            <div className="flex flex-1 justify-evenly items-center flex-wrap sm:mt-0 mt-5 w-full">
+                <a href="/Voting" className="text-white text-base text-center mx-2 cursor-pointer">
+                    Voting
+                </a>
+                <a href="/Voting" className="text-white text-base text-center mx-2 cursor-pointer">
+                    Results
+                </a>
+                <a href="/Voting" className="text-white text-base text-center mx-2 cursor-pointer">
+                    Add Candidate
+                </a>
+                <a href="/Voting" className="text-white text-base text-center mx-2 cursor-pointer">
+                    Verification
+                </a>
+            </div>
+        </div>
+
+        <div className="flex justify-center items-center flex-col mt-5">
+            <p className="text-white text-sm text-center">
+                Come join us and hear for the unexpected miracle
+            </p>
+            <p className="text-white text-sm text-center font-medium mt-2">
+                info@polyvote.com
+            </p>
+        </div>
+
+        <div className="sm:w-[90%] w-full h-[0.25px] bg-gray-400 mt-5 " />
+
+        <div className="sm:w-[90%] w-full flex justify-between items-center mt-3">
+            <p className="text-white text-left text-xs">@polyvote2022</p>
+            <p className="text-white text-right text-xs">All rights reserved</p>
+        </div>
+    </div>
+);
+
+export default Footer;

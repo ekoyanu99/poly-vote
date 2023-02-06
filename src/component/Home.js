@@ -9,6 +9,8 @@ import UserHome from './UserHome';
 import StartEnd from './StartEnd';
 import ElectionStatus from './ElectionStatus';
 import Loader from './Loader';
+import Footer from './Footer/Footer';
+import Guide from './Guide';
 
 // Contract
 import getWeb3 from '../getWeb3';
@@ -16,6 +18,7 @@ import Election from './utils/Election.json';
 
 // CSS
 import './Home.css';
+import '../index.css';
 
 export default class Home extends Component {
 
@@ -94,7 +97,6 @@ export default class Home extends Component {
                     organizationTitle: organizationTitle,
                 },
             });
-
         } catch (error) {
             // Catch any errors for any of the above operations.
             // alert(
@@ -129,55 +131,62 @@ export default class Home extends Component {
         if (!this.state.web3) {
             return (
                 <>
-                    <Navbar />
-                    <Loader />
+                    <div className='min-h-screen'>
+                        <div className='gradient-bg-welcome'>
+                            <Navbar />
+                            <Loader />
+                        </div>
+                        <Guide />
+                    </div>
                 </>
             );
         }
         return (
             <>
-                {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-                <div className="container-main">
-                    <div className="container-item center-items info">
-                        Your Account: {this.state.account}
+                <div className='min-h-screen'>
+                    <div className='gradient-bg-welcome'>
+                        {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
+                        <div className="container-main">
+                            {!this.state.elStarted & !this.state.elEnded ? (
+                                <div className="container-item info">
+                                    <center>
+                                        <h3 className='text-white'>The election has not been initialize.</h3>
+                                        {this.state.isAdmin ? (
+                                            <p className='text-white'>Set up the election.</p>
+                                        ) : (
+                                            <p className='text-white'>Please wait..</p>
+                                        )}
+                                    </center>
+                                </div>
+                            ) : null}
+                        </div>
+                        {this.state.isAdmin ? (
+                            <>
+                                <this.renderAdminHome />
+                            </>
+                        ) : this.state.elStarted ? (
+                            <>
+                                <UserHome el={this.state.elDetails} account={this.state.account} />
+                            </>
+                        ) : !this.state.isElStarted && this.state.isElEnded ? (
+                            <>
+                                <div className="container-item attention">
+                                    <center>
+                                        <h3>The Election ended.</h3>
+                                        <br />
+                                        <Link
+                                            to="/Results"
+                                            style={{ color: "black", textDecoration: "underline" }}
+                                        >
+                                            See results
+                                        </Link>
+                                    </center>
+                                </div>
+                            </>
+                        ) : null}
                     </div>
-                    {!this.state.elStarted & !this.state.elEnded ? (
-                        <div className="container-item info">
-                            <center>
-                                <h3>The election has not been initialize.</h3>
-                                {this.state.isAdmin ? (
-                                    <p>Set up the election.</p>
-                                ) : (
-                                    <p>Please wait..</p>
-                                )}
-                            </center>
-                        </div>
-                    ) : null}
+                    <Guide />
                 </div>
-                {this.state.isAdmin ? (
-                    <>
-                        <this.renderAdminHome />
-                    </>
-                ) : this.state.elStarted ? (
-                    <>
-                        <UserHome el={this.state.elDetails} />
-                    </>
-                ) : !this.state.isElStarted && this.state.isElEnded ? (
-                    <>
-                        <div className="container-item attention">
-                            <center>
-                                <h3>The Election ended.</h3>
-                                <br />
-                                <Link
-                                    to="/Results"
-                                    style={{ color: "black", textDecoration: "underline" }}
-                                >
-                                    See results
-                                </Link>
-                            </center>
-                        </div>
-                    </>
-                ) : null}
             </>
         );
     }
@@ -296,7 +305,7 @@ export default class Home extends Component {
                                 </div>
                             </div>
                         ) : this.state.elStarted ? (
-                            <UserHome el={this.state.elDetails} />
+                            <UserHome el={this.state.elDetails} account={this.state.account} />
                         ) : null}
                         <StartEnd
                             elStarted={this.state.elStarted}

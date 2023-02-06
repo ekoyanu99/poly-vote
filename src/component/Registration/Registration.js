@@ -139,146 +139,151 @@ export default class Registration extends Component {
         if (!this.state.web3) {
             return (
                 <>
-                    {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-                    <Loader />
+                    <div className='min-h-screen'>
+                        <div className='gradient-bg-welcome'>
+                            <Navbar />
+                            <Loader />
+                        </div>
+                    </div>
                 </>
             );
         }
         return (
             <>
-                {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-                {!this.state.elStarted && !this.state.elEnded ? (
-                    <NotInit />
-                ) : (
-                    <>
-                        <div className='container pb-2 pt-10'>
-                            <div className='row'>
-                                <div className='col-lg-6 pb-2 mb-2'>
-                                    <div className="">
-                                        <h5>Registration</h5>
-                                        <small>Register to vote.</small>
-                                        <div className="container-item">
-                                            <form>
-                                                <div className="mb-3">
-                                                    <label className={"form-label"}>
-                                                        Account Address
-                                                        <input
-                                                            className={"form-control"}
-                                                            type="text"
-                                                            value={this.state.account}
-                                                            style={{ width: "400px" }}
-                                                        />{" "}
-                                                    </label>
+
+                <div className='min-h-screen'>
+                    <div className='gradient-bg-welcome'>
+                        {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
+                    </div>
+                    <div className='gradient-bg-services'>
+                        {!this.state.elStarted && !this.state.elEnded ? (
+                            <NotInit />
+                        ) : (
+                            <>
+                                <div className='flex w-full justify-center items-center'>
+                                    <div className='flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4'>
+                                        <div className='flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10'>
+                                            <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
+                                                <h5 className='text-xl sm:text-3xl text-white text-gradient py-1'>Register to vote</h5>
+                                                <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
+
+                                                    <input
+                                                        className='my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism'
+                                                        type="text"
+                                                        value={this.state.account}
+                                                    />
+
+                                                    <input
+                                                        className='my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism'
+                                                        type="text"
+                                                        placeholder="eg. Ava"
+                                                        value={this.state.voterName}
+                                                        onChange={this.updateVoterName}
+                                                    />
+                                                    <input
+                                                        className='my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism'
+                                                        type="number"
+                                                        placeholder="eg. 8231234567"
+                                                        value={this.state.voterPhone}
+                                                        onChange={this.updateVoterPhone}
+                                                    />
+
+                                                    <button
+                                                        type='button'
+                                                        className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
+                                                        disabled={
+                                                            this.state.voterPhone.length !== 10 ||
+                                                            this.state.currentVoter.isVerified
+                                                        }
+                                                        onClick={this.registerAsVoter}
+                                                    >
+                                                        {this.state.currentVoter.isRegistered
+                                                            ? "Update"
+                                                            : "Register"}
+                                                    </button>
                                                 </div>
-                                                <div className="mb-3">
-                                                    <label className={"form-label"}>
-                                                        Name
-                                                        <input
-                                                            className={"form-control"}
-                                                            type="text"
-                                                            placeholder="eg. Ava"
-                                                            value={this.state.voterName}
-                                                            onChange={this.updateVoterName}
-                                                        />{" "}
-                                                    </label>
-                                                </div>
-                                                <div className="mb-3">
-                                                    <label className={"form-label"}>
-                                                        Phone number <span style={{ color: "tomato" }}>*</span>
-                                                        <input
-                                                            className={"form-control"}
-                                                            type="number"
-                                                            placeholder="eg. 8231234567"
-                                                            value={this.state.voterPhone}
-                                                            onChange={this.updateVoterPhone}
-                                                        />
-                                                    </label>
-                                                </div>
-                                                <p className="note">
-                                                    <span style={{ color: "tomato" }}> Note: </span>
-                                                    <br /> Make sure your account address and Phone number are
-                                                    correct. <br /> Admin might not approve your account if the
-                                                    provided Phone number nub does not matches the account
-                                                    address registered in admins catalogue.
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div className='flex flex-1 justify-start items-center flex-col mf:mr-10'>
+                                            <div
+                                                className="flex flex-1 justify-start items-center flex-col mf:mr-10"
+                                                style={{
+                                                    borderTop: this.state.currentVoter.isRegistered
+                                                        ? null
+                                                        : "1px solid",
+                                                }}
+                                            >
+                                                {loadCurrentVoter(
+                                                    this.state.currentVoter,
+                                                    this.state.currentVoter.isRegistered
+                                                )}
+
+                                                <br />
+                                                <h1 className="text-3xl sm:text-5xl text-white text-gradient py-1">
+                                                    Note
+                                                </h1>
+                                                <p className="text-left mt-5 text-red-400 font-light md:w-9/12 w-11/12 text-base">
+                                                    Make sure your account address and Phone number are correct.
+                                                    Admin might not approve your account if the provided Phone number nub does not matches the account address registered in admins catalogue.
                                                 </p>
-                                                <button
-                                                    className="btn-add btn btn-primary"
-                                                    disabled={
-                                                        this.state.voterPhone.length !== 10 ||
-                                                        this.state.currentVoter.isVerified
-                                                    }
-                                                    onClick={this.registerAsVoter}
-                                                >
-                                                    {this.state.currentVoter.isRegistered
-                                                        ? "Update"
-                                                        : "Register"}
-                                                </button>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='col-lg-6 pt-2 mt-2'>
-                                    <div
-                                        className="container-main"
-                                        style={{
-                                            borderTop: this.state.currentVoter.isRegistered
-                                                ? null
-                                                : "1px solid",
-                                        }}
-                                    >
-                                        {loadCurrentVoter(
-                                            this.state.currentVoter,
-                                            this.state.currentVoter.isRegistered
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
 
-                        </div>
-                    </>
-                )}
+                                </div>
+                            </>
+                        )}
+                    </div>
+                </div>
             </>
         );
     }
 }
+
+const companyCommonStyles =
+    "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
+
 export function loadCurrentVoter(voter, isRegistered) {
     return (
         <>
             <div
-                className={"container-item " + (isRegistered ? "success" : "attention")}
+                className='flex flex-1 justify-start items-center flex-col mf:mr-10'
             >
-                <center>Your Registered Info</center>
-            </div>
-            <br></br>
-            <div
-                className={"container-list " + (isRegistered ? "success" : "attention")}
-            >
-                <table className='table'>
-                    <tr>
-                        <th>Account Address</th>
-                        <td>{voter.address}</td>
-                    </tr>
-                    <tr>
-                        <th>Name</th>
-                        <td>{voter.name}</td>
-                    </tr>
-                    <tr>
-                        <th>Phone</th>
-                        <td>{voter.phone}</td>
-                    </tr>
-                    <tr>
-                        <th>Voted</th>
-                        <td>{voter.hasVoted ? "True" : "False"}</td>
-                    </tr>
-                    <tr>
-                        <th>Verification</th>
-                        <td>{voter.isVerified ? "True" : "False"}</td>
-                    </tr>
-                    <tr>
-                        <th>Registered</th>
-                        <td>{voter.isRegistered ? "True" : "False"}</td>
-                    </tr>
-                </table>
+                <h1 className="text-3xl sm:text-5xl text-white text-gradient py-1">
+                    Your Registered Info
+                </h1>
+                <br />
+                <div
+                    className='flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10'
+                >
+                    <table className={`table text-center border-separate border-spacing-2 border border-slate-500 ${companyCommonStyles}`}>
+                        <tr>
+                            <th className='border border-slate-600'>Account Address</th>
+                            <td className='border border-slate-600'>{voter.address}</td>
+                        </tr>
+                        <tr>
+                            <th className='border border-slate-600'>Name</th>
+                            <td className='border border-slate-600'>{voter.name}</td>
+                        </tr>
+                        <tr>
+                            <th className='border border-slate-600'>Phone</th>
+                            <td className='border border-slate-600'>{voter.phone}</td>
+                        </tr>
+                        <tr>
+                            <th className='border border-slate-600'>Voted</th>
+                            <td className='border border-slate-600'>{voter.hasVoted ? "True" : "False"}</td>
+                        </tr>
+                        <tr>
+                            <th className='border border-slate-600'>Verification</th>
+                            <td className='border border-slate-600'>{voter.isVerified ? "True" : "False"}</td>
+                        </tr>
+                        <tr>
+                            <th className='border border-slate-600'>Registered</th>
+                            <td className='border border-slate-600'>{voter.isRegistered ? "True" : "False"}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </>
     );

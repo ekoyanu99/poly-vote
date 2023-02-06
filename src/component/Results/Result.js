@@ -153,25 +153,34 @@ export default class Result extends Component {
         if (!this.state.web3) {
             return (
                 <>
-                    {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-                    <Loader />
+                    {/* {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />} */}
+                    <div className='min-h-screen'>
+                        <div className='gradient-bg-welcome'>
+                            <Navbar />
+                            <Loader />
+                        </div>
+                    </div>
                 </>
             );
         }
 
         return (
             <>
-                {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-                <br />
-                <div>
-                    {!this.state.elStarted && !this.state.elEnded ? (
-                        <NotInit />
-                    ) : this.state.elStarted && !this.state.elEnded ? (
-                        //<TemporaryResults chart={chart} />
-                        temporaryResults(this.state.candidates)
-                    ) : !this.state.elStarted && this.state.elEnded ? (
-                        displayResults(this.state.candidates)
-                    ) : null}
+
+                <div className='min-h-screen'>
+                    <div className='gradient-bg-welcome'>
+                        {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
+                        <div>
+                            {!this.state.elStarted && !this.state.elEnded ? (
+                                <NotInit />
+                            ) : this.state.elStarted && !this.state.elEnded ? (
+                                //<TemporaryResults chart={chart} />
+                                temporaryResults(this.state.candidates)
+                            ) : !this.state.elStarted && this.state.elEnded ? (
+                                displayResults(this.state.candidates)
+                            ) : null}
+                        </div>
+                    </div>
                 </div>
             </>
         );
@@ -180,24 +189,26 @@ export default class Result extends Component {
 
 
 export function temporaryResults(candidates) {
-        return (
-            <div className="container-main" style={{ borderTop: "1px solid" }}>
-                <h2>Temporary Results</h2>
-                <small>Total candidates: {candidates.length}</small>
-                {candidates.length < 1 ? (
-                    <div className="container attention">
-                        <center>No candidates.</center>
+    return (
+        <div className="item-center">
+            {candidates.length < 1 ? (
+                <div className="container attention">
+                    <center className='text-white'>No candidates.</center>
+                </div>
+            ) : (
+                <>
+                    <div className='flex w-full justify-center items-center'>
+                        <h2 className='text-white'>Temporary Results</h2>
+                        <p className='text-white'>Total candidates: {candidates.length}</p>
                     </div>
-                ) : (
-                    <>
-                        <div className="container">
-                            <canvas id="myChart"></canvas>
-                        </div>
-                        {/* <canvas id="myChart"/> */}
-                    </>
-                )}
-            </div>
-        );
+
+                    <div className="flex justify-center items-center w-3/4 mx-auto ">
+                        <canvas id="myChart" width={500} height={500}></canvas>
+                    </div>
+                </>
+            )}
+        </div>
+    );
 }
 
 function displayWinner(candidates) {

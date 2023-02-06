@@ -14,13 +14,12 @@ import Registration from './component/Registration/Registration';
 
 import Footer from './component/Footer/Footer';
 
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 export default class App extends Component {
   render() {
     return (
-      <div className='App'>
+      <div className='gradient-bg-welcome'>
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
