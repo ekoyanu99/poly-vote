@@ -7,13 +7,9 @@ import Loader from '../Loader';
 
 import getWeb3 from '../../getWeb3';
 import Election from '../utils/Election.json';
-
 import Chart from 'chart.js/auto';
 
-import TemporaryResults from './TemporaryResults';
-// import './Result.css';
-
-export default class Result extends Component {
+export default class TemporaryResults extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,10 +23,10 @@ export default class Result extends Component {
             elEnded: false,
         };
     }
-
     chart = null;
 
     componentDidMount = async () => {
+
         // refreshing once
         if (!window.location.hash) {
             window.location = window.location + "#loaded";
@@ -122,7 +118,7 @@ export default class Result extends Component {
                     yAxes: [
                         {
                             ticks: {
-                                beginAtZero: true,
+                                beginAtZero: false
                             }
                         }
                     ]
@@ -143,48 +139,19 @@ export default class Result extends Component {
             // );
             console.error(error);
         }
-    };
+    }
 
     componentWillUnmount() {
         if (this.chart) this.chart.destroy();
     }
 
     render() {
-        if (!this.state.web3) {
-            return (
-                <>
-                    {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-                    <Loader />
-                </>
-            );
-        }
-
-        return (
-            <>
-                {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-                <br />
-                <div>
-                    {!this.state.elStarted && !this.state.elEnded ? (
-                        <NotInit />
-                    ) : this.state.elStarted && !this.state.elEnded ? (
-                        //<TemporaryResults chart={chart} />
-                        temporaryResults(this.state.candidates)
-                    ) : !this.state.elStarted && this.state.elEnded ? (
-                        displayResults(this.state.candidates)
-                    ) : null}
-                </div>
-            </>
-        );
-    }
-}
-
-
-export function temporaryResults(candidates) {
+        
         return (
             <div className="container-main" style={{ borderTop: "1px solid" }}>
                 <h2>Temporary Results</h2>
-                <small>Total candidates: {candidates.length}</small>
-                {candidates.length < 1 ? (
+                <small>Total candidates: {this.state.candidates.length}</small>
+                {this.state.candidates.length < 1 ? (
                     <div className="container attention">
                         <center>No candidates.</center>
                     </div>
@@ -198,85 +165,5 @@ export function temporaryResults(candidates) {
                 )}
             </div>
         );
-}
-
-function displayWinner(candidates) {
-    const getWinner = (candidates) => {
-        // Returns an object having maxium vote count
-        let maxVoteRecived = 0;
-        let winnerCandidate = [];
-        for (let i = 0; i < candidates.length; i++) {
-            if (candidates[i].voteCount > maxVoteRecived) {
-                maxVoteRecived = candidates[i].voteCount;
-                winnerCandidate = [candidates[i]];
-            } else if (candidates[i].voteCount === maxVoteRecived) {
-                winnerCandidate.push(candidates[i]);
-            }
-        }
-        return winnerCandidate;
-    };
-    const renderWinner = (winner) => {
-        return (
-            <div className="container-winner">
-                <div className="winner-info">
-                    <p className="winner-tag">Winner!</p>
-                    <h2> {winner.header}</h2>
-                    <p className="winner-slogan">{winner.slogan}</p>
-                </div>
-                <div className="winner-votes">
-                    <div className="votes-tag">Total Votes: </div>
-                    <div className="vote-count">{winner.voteCount}</div>
-                </div>
-            </div>
-        );
-    };
-    const winnerCandidate = getWinner(candidates);
-    return <>{winnerCandidate.map(renderWinner)}</>;
-}
-
-export function displayResults(candidates) {
-    const renderResults = (candidate) => {
-        return (
-            <tr key={candidate.id}>
-                <td>{candidate.id}</td>
-                <td>{candidate.header}</td>
-                <td>{candidate.voteCount}</td>
-            </tr>
-        );
-    };
-    return (
-        <>
-            {candidates.length > 0 ? (
-                <div className="container-main">{displayWinner(candidates)}</div>
-            ) : null}
-            <div className="container-main" style={{ borderTop: "1px solid" }}>
-                <h2>Results</h2>
-                <small>Total candidates: {candidates.length}</small>
-                {candidates.length < 1 ? (
-                    <div className="container attention">
-                        <center>No candidates.</center>
-                    </div>
-                ) : (
-                    <>
-                        <div className="container">
-                            <table className='table table-bordered'>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Candidate</th>
-                                    <th>Votes</th>
-                                </tr>
-                                {candidates.map(renderResults)}
-                            </table>
-                        </div>
-                        <div
-                            className="container"
-                            style={{ border: "1px solid black" }}
-                        >
-                            <center>That is all.</center>
-                        </div>
-                    </>
-                )}
-            </div>
-        </>
-    );
+    }
 }

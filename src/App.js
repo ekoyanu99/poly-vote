@@ -1,19 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-
-// import './App.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
-// const Home = lazy(()=>import('./component/Home'));
-// const test = lazy(()=>import('./component/test')); 
-// const AddCandidate = lazy(()=>import('./component/Admin/AddCandidate/AddCandidate'));
-// const Verification = lazy(()=>import('./component/Admin/Verification/Verification'));
-
-// const Voting = lazy(()=>import('./component/Voting/Voting'));
-// const Results = lazy(()=>import('./component/Results/Result'));
-// const Registration = lazy(()=>import('./component/Registration/Registration'));
-
-// const Footer = lazy(()=>import('./component/Footer/Footer'));
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import Home from './component/Home';
 import test from './component/test';
@@ -22,6 +8,8 @@ import Verification from './component/Admin/Verification/Verification';
 
 import Voting from './component/Voting/Voting';
 import Results from './component/Results/Result';
+// import PieChart from './component/Results/PieChart';
+//import TemporaryResults from './component/Results/TemporaryResults';
 import Registration from './component/Registration/Registration';
 
 import Footer from './component/Footer/Footer';
@@ -39,6 +27,8 @@ export default class App extends Component {
             <Route exact path="/AddCandidate" component={AddCandidate} />
             <Route exact path="/Voting" component={Voting} />
             <Route exact path="/Results" component={Results} />
+            {/* <Route exact path="/Results" component={TemporaryResults} /> */}
+            {/* <Route exact path="/Results" component={PieChart} /> */}
             <Route exact path="/Registration" component={Registration} />
             <Route exact path="/Verification" component={Verification} />
             <Route exact path="/test" component={test} />

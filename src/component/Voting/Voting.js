@@ -139,6 +139,8 @@ export default class Voting extends Component {
                             {candidate.header} <small>#{candidate.id}</small>
                         </h2>
                         <p className="slogan">{candidate.slogan}</p>
+                    </div>
+                    <div className="vote-btn-container">
                         <button
                             onClick={() => confirmVote(candidate.id, candidate.header)}
                             className="btn btn-dark"
@@ -150,8 +152,6 @@ export default class Voting extends Component {
                         >
                             Vote
                         </button>
-                    </div>
-                    <div className="vote-btn-container">
                     </div>
                 </div>
             </div>
