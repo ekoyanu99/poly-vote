@@ -18,7 +18,8 @@
     "web3": "^1.8.0"
   },
   "devDependencies": {
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "nth-check": ">=2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
