@@ -2,8 +2,6 @@ import React from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 
-import "./Navbar.css";
-
 export default function NavbarUser() {
     const [toggleMenu, setToggleMenu] = React.useState(false);
     return (
@@ -44,18 +42,5 @@ export default function NavbarUser() {
                 )}
             </div>
         </nav>
-        // <Navbar variant="dark" bg="primary" expand="lg">
-        //     <Container>
-        //         <Navbar.Brand href="/"><i className="fab fa-hive"></i> Home</Navbar.Brand>
-        //         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        //         <Navbar.Collapse id="basic-navbar-nav">
-        //             <Nav className="justify-content-around flex-grow-1 pe-3">
-        //                 <Nav.Link href="/Registration"><i className="far fa-registered" /> Registration</Nav.Link>
-        //                 <Nav.Link href="/Voting"><i className="fas fa-vote-yea" /> Voting</Nav.Link>
-        //                 <Nav.Link href="/Results"><i className="fas fa-poll-h" /> Results</Nav.Link>
-        //             </Nav>
-        //         </Navbar.Collapse>
-        //     </Container>
-        // </Navbar>
     );
 }

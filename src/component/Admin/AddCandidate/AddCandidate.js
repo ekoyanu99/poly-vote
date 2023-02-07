@@ -9,8 +9,6 @@ import Election from '../../utils/Election.json';
 
 import AdminOnly from '../../AdminOnly';
 
-import './AddCandidate.css';
-
 export default class AddCandidate extends Component {
 
     constructor(props) {

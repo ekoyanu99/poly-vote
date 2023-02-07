@@ -8,7 +8,8 @@ import Election from '../../utils/Election.json';
 
 import AdminOnly from '../../AdminOnly';
 
-import './Verification.css';
+const companyCommonStyles =
+    "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
 
 export default class Verification extends Component {
 
@@ -90,6 +91,7 @@ export default class Verification extends Component {
             console.error(error);
         }
     };
+
     renderUnverifiedVoters = (voter) => {
         const verifyVoter = async (verifiedStatus, address) => {
             await this.state.ElectionInstance.methods
@@ -100,62 +102,59 @@ export default class Verification extends Component {
         return (
             <>
                 {voter.isVerified ? (
-                    <div className="container-list success">
-                        <p style={{ margin: "7px 0px" }}>AC: {voter.address}</p>
-                        <table className='table table-bordered'>
+                    <div className='mt-5'>
+                        <table className={`table text-center border-separate border-spacing-2 border border-slate-500 ${companyCommonStyles}`}>
+
                             <tr>
+                                <th>Account address</th>
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Voted</th>
                             </tr>
                             <tr>
+                                <td>{voter.address}</td>
                                 <td>{voter.name}</td>
                                 <td>{voter.phone}</td>
                                 <td>{voter.hasVoted ? "True" : "False"}</td>
                             </tr>
+
+
                         </table>
                     </div>
-                ) : null}
-                <div
-                    className="container-list attention"
-                    style={{ display: voter.isVerified ? "none" : null }}
-                >
-                    <table className='table table-bordered'>
-                        <tr>
-                            <th>Account address</th>
-                            <td>{voter.address}</td>
-                        </tr>
-                        <tr>
-                            <th>Name</th>
-                            <td>{voter.name}</td>
-                        </tr>
-                        <tr>
-                            <th>Phone</th>
-                            <td>{voter.phone}</td>
-                        </tr>
-                        <tr>
-                            <th>Voted</th>
-                            <td>{voter.hasVoted ? "True" : "False"}</td>
-                        </tr>
-                        <tr>
-                            <th>Verified</th>
-                            <td>{voter.isVerified ? "True" : "False"}</td>
-                        </tr>
-                        <tr>
-                            <th>Registered</th>
-                            <td>{voter.isRegistered ? "True" : "False"}</td>
-                        </tr>
-                    </table>
-                    <div style={{}}>
-                        <button
-                            className="btn-verification approve"
-                            disabled={voter.isVerified}
-                            onClick={() => verifyVoter(true, voter.address)}
-                        >
-                            Approve
-                        </button>
+                ) :
+                    <div className='mt-5'>
+                        <table className={`table text-center border-separate border-spacing-2 border border-slate-500 ${companyCommonStyles}`}>
+
+                            <tr>
+                                <th>Account address</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Voted</th>
+                                <th>Verified</th>
+                                <th>Registered</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>{voter.address}</td>
+                                <td>{voter.name}</td>
+                                <td>{voter.phone}</td>
+                                <td>{voter.hasVoted ? "True" : "False"}</td>
+                                <td>{voter.isVerified ? "True" : "False"}</td>
+                                <td>{voter.isRegistered ? "True" : "False"}</td>
+                                <td>
+                                    <button
+                                        type='button'
+                                        className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer"
+                                        disabled={voter.isVerified}
+                                        onClick={() => verifyVoter(true, voter.address)}
+                                    >
+                                        Approve
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                </div>
+                }
             </>
         );
     };
@@ -179,19 +178,27 @@ export default class Verification extends Component {
         return (
             <>
                 <NavbarAdmin />
-                <div className="container-main">
-                    <h3>Verification</h3>
-                    <small>Total Voters: {this.state.voters.length}</small>
-                    {this.state.voters.length < 0 ? (
-                        <div className="container-item info">None has registered yet.</div>
-                    ) : (
-                        <>
-                            <div className="container-item info">
-                                <center>List of registered voters</center>
+                <div className="min-h-screen">
+                    <div className='flex w-full justify-center items-center'>
+                        <div className='flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10'>
+                            <h3 className='text-white'>Verification</h3>
+                            <small className='text-white'>Total Voters: {this.state.voters.length}</small>
+                            <div className='flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10'>
+                                {this.state.voters.length < 0 ? (
+                                    <p className="text-white">None has registered yet.</p>
+                                ) : (
+                                    <>
+                                        <p className='text-white'>List of registered voters</p>
+                                        <div className='flex flex-wrap'>
+                                            <div className="w-1/3 p-2">
+                                                {this.state.voters.map(this.renderUnverifiedVoters)}
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
                             </div>
-                            {this.state.voters.map(this.renderUnverifiedVoters)}
-                        </>
-                    )}
+                        </div>
+                    </div>
                 </div>
             </>
         );

@@ -166,45 +166,60 @@ export default class Registration extends Component {
                                             <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
                                                 <h5 className='text-xl sm:text-3xl text-white text-gradient py-1'>Register to vote</h5>
                                                 <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
+                                                    <form>
+                                                        <div className="mb-3">
+                                                            <label className={`form-label text-white`}>
+                                                                Account Address
+                                                                <input
+                                                                    className={`form-control my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism`}
+                                                                    type="text"
+                                                                    value={this.state.account}
+                                                                />{" "}
+                                                            </label>
+                                                        </div>
+                                                        <div className="mb-3">
+                                                            <label className={`form-label text-white`}>
+                                                                Name
+                                                                <input
+                                                                    className={`form-control my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism`}
+                                                                    type="text"
+                                                                    placeholder="eg. Ava"
+                                                                    value={this.state.voterName}
+                                                                    onChange={this.updateVoterName}
+                                                                />{" "}
+                                                            </label>
+                                                        </div>
+                                                        <div className="mb-3">
+                                                            <label className={`form-label text-white`}>
+                                                                Phone number <span style={{ color: "tomato" }}>*</span>
+                                                                <input
+                                                                    className={`form-control my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism`}
 
-                                                    <input
-                                                        className='my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism'
-                                                        type="text"
-                                                        value={this.state.account}
-                                                    />
-
-                                                    <input
-                                                        className='my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism'
-                                                        type="text"
-                                                        placeholder="eg. Ava"
-                                                        value={this.state.voterName}
-                                                        onChange={this.updateVoterName}
-                                                    />
-                                                    <input
-                                                        className='my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism'
-                                                        type="number"
-                                                        placeholder="eg. 8231234567"
-                                                        value={this.state.voterPhone}
-                                                        onChange={this.updateVoterPhone}
-                                                    />
-
-                                                    <button
-                                                        type='button'
-                                                        className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
-                                                        disabled={
-                                                            this.state.voterPhone.length !== 10 ||
-                                                            this.state.currentVoter.isVerified
-                                                        }
-                                                        onClick={this.registerAsVoter}
-                                                    >
-                                                        {this.state.currentVoter.isRegistered
-                                                            ? "Update"
-                                                            : "Register"}
-                                                    </button>
+                                                                    type="number"
+                                                                    placeholder="eg. 8231234567"
+                                                                    value={this.state.voterPhone}
+                                                                    onChange={this.updateVoterPhone}
+                                                                />
+                                                            </label>
+                                                        </div>
+                                                        <button
+                                                            type='button'
+                                                            className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer"
+                                                            disabled={
+                                                                this.state.voterPhone.length !== 10 ||
+                                                                this.state.currentVoter.isVerified
+                                                            }
+                                                            onClick={this.registerAsVoter}
+                                                        >
+                                                            {this.state.currentVoter.isRegistered
+                                                                ? "Update"
+                                                                : "Register"}
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
-                                        <br/>
+                                        <br />
                                         <div className='flex flex-1 justify-start items-center flex-col mf:mr-10'>
                                             <div
                                                 className="flex flex-1 justify-start items-center flex-col mf:mr-10"

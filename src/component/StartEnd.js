@@ -2,79 +2,58 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const StartEnd = (props) => {
-    const btn = {
-        display: "block",
-        padding: "21px",
-        margin: "7px",
-        minWidth: "max-content",
-        textAlign: "center",
-        width: "333px",
-        alignSelf: "center",
-    };
+    const btn = 'text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer'
     return (
-        <div
-            className="container-main"
-            style={{ borderTop: "1px solid", marginTop: "0px" }}
-        >
+        <div className="flex justify-center items-center">
             {!props.elStarted ? (
                 <>
                     {/* edit here to display start election Again button */}
                     {!props.elEnded ? (
                         <>
-                            <div
-                                className="container-item attention"
-                                style={{ display: "block" }}
-                            >
-                                <h2>Do not forget to add candidates.</h2>
-                                <p>
+                            <div>
+                                <h2 className="text-white">Do not forget to add candidates.</h2>
+                                <p className="text-white">
                                     Go to{" "}
                                     <Link
                                         title="Add a new "
                                         to="/addCandidate"
-                                        style={{
-                                            color: "black",
-                                            textDecoration: "underline",
-                                        }}
+                                        className="text-white"
                                     >
                                         add candidates
                                     </Link>{" "}
                                     page.
                                 </p>
-                            </div>
-                            <div className="container-item">
-                                <button type="submit" style={btn}>
+                                <button type="submit" className={btn}>
                                     Start Election {props.elEnded ? "Again" : null}
                                 </button>
                             </div>
                         </>
                     ) : (
-                        <div className="container-item">
+                        <div>
                             <center>
-                                <p>Re-deploy the contract to start election again.</p>
+                                <p className="text-white">Re-deploy the contract to start election again.</p>
                             </center>
                         </div>
                     )}
                     {props.elEnded ? (
-                        <div className="container-item">
+                        <div>
                             <center>
-                                <p>The election ended.</p>
+                                <p className="text-white">The election ended.</p>
                             </center>
                         </div>
                     ) : null}
                 </>
             ) : (
                 <>
-                    <div className="container-item">
+                    <div>
                         <center>
-                            <p>The election started.</p>
+                            <p className="text-white">The election started.</p>
                         </center>
-                    </div>
-                    <div className="container-item">
                         <button
                             type="button"
                             // onClick={this.endElection}
                             onClick={props.endElFn}
-                            style={btn}
+                            className={btn}
                         >
                             End
                         </button>

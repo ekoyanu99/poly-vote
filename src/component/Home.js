@@ -17,7 +17,6 @@ import getWeb3 from '../getWeb3';
 import Election from './utils/Election.json';
 
 // CSS
-import './Home.css';
 import '../index.css';
 
 export default class Home extends Component {
@@ -311,10 +310,6 @@ export default class Home extends Component {
                             elStarted={this.state.elStarted}
                             elEnded={this.state.elEnded}
                             endElFn={this.endElection}
-                        />
-                        <ElectionStatus
-                            elStarted={this.state.elStarted}
-                            elEnded={this.state.elEnded}
                         />
                     </form>
                 </div>

@@ -9,7 +9,7 @@ import Election from '../../utils/Election.json';
 
 import AdminOnly from '../../AdminOnly';
 
-import './StartEnd.css';
+import '../../../index.css'
 
 export default class StartEnd extends Component {
 
@@ -108,21 +108,19 @@ export default class StartEnd extends Component {
             <>
                 <NavbarAdmin />
                 {!this.state.elStarted & !this.state.elEnded ? (
-                    <div className="container-item info">
+                    <div className="">
                         <center>The election have never been initiated.</center>
                     </div>
                 ) : null}
-                <div className="container-main">
+                <div className="flex justify-center items-center h-screen">
                     <h3>Start or end election</h3>
                     {!this.state.elStarted ? (
                         <>
-                            <div className="container-item">
-                                <button onClick={this.startElection} className="start-btn">
+                            <button type='button' onClick={this.startElection} className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#2952e3] rounded-full cursor-pointer">
                                     Start {this.state.elEnded ? "Again" : null}
-                                </button>
-                            </div>
+                            </button>
                             {this.state.elEnded ? (
-                                <div className="container-item">
+                                <div className="">
                                     <center>
                                         <p>The election ended.</p>
                                     </center>
@@ -131,22 +129,16 @@ export default class StartEnd extends Component {
                         </>
                     ) : (
                         <>
-                            <div className="container-item">
+                            <div className="">
                                 <center>
-                                    <p>The election started.</p>
+                                    <p className='text-white'>The election started.</p>
                                 </center>
                             </div>
-                            <div className="container-item">
-                                <button onClick={this.endElection} className="start-btn">
+                            <button type='button' onClick={this.endElection} className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer">
                                     End
                                 </button>
-                            </div>
                         </>
                     )}
-                    <div className="election-status">
-                        <p>Started: {this.state.elStarted ? "True" : "False"}</p>
-                        <p>Ended: {this.state.elEnded ? "True" : "False"}</p>
-                    </div>
                 </div>
             </>
         );

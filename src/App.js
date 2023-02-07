@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BsFillFileLock2Fill } from "react-icons/bs";
+import {TbError404} from "react-icons/tb";
 
 import Home from './component/Home';
 import test from './component/test';
 import AddCandidate from './component/Admin/AddCandidate/AddCandidate';
 import Verification from './component/Admin/Verification/Verification';
+
 
 import Voting from './component/Voting/Voting';
 import Results from './component/Results/Result';
@@ -13,6 +16,7 @@ import Results from './component/Results/Result';
 import Registration from './component/Registration/Registration';
 
 import Footer from './component/Footer/Footer';
+import NavbarUser from './component/Navbar/NavbarUser';
 
 import './index.css';
 
@@ -44,20 +48,14 @@ class NotFound extends Component {
   render() {
     return (
       <>
+        <NavbarUser />
+        <div className="flex justify-center items-center h-screen">
+          <div className="p-8 text-white text-center">
+            <h4 className="text-3xl">Not Found</h4>
+            <TbError404 fontSize={128} className="mx-auto text-white  text-center" />
+          </div>
+        </div>
         <h1>404 NOT FOUND!</h1>
-        <center>
-          <p>
-            The page your are looking for doesn't exist.
-            <br />
-            Go to{" "}
-            <Link
-              to="/"
-              style={{ color: "black", textDecoration: "underline" }}
-            >
-              Home
-            </Link>
-          </p>
-        </center>
       </>
     );
   }

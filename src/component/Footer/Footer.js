@@ -10,17 +10,14 @@ const Footer = () => (
                 <a href="/"><p className="text-cyan-400">PolyVote</p></a>
             </div>
             <div className="flex flex-1 justify-evenly items-center flex-wrap sm:mt-0 mt-5 w-full">
+                <a href="/Registration" className="text-white text-base text-center mx-2 cursor-pointer">
+                    Registration
+                </a>
                 <a href="/Voting" className="text-white text-base text-center mx-2 cursor-pointer">
                     Voting
                 </a>
-                <a href="/Voting" className="text-white text-base text-center mx-2 cursor-pointer">
+                <a href="/Results" className="text-white text-base text-center mx-2 cursor-pointer">
                     Results
-                </a>
-                <a href="/Voting" className="text-white text-base text-center mx-2 cursor-pointer">
-                    Add Candidate
-                </a>
-                <a href="/Voting" className="text-white text-base text-center mx-2 cursor-pointer">
-                    Verification
                 </a>
             </div>
         </div>
