@@ -192,7 +192,7 @@ export function temporaryResults(candidates) {
     return (
         <div className="item-center">
             {candidates.length < 1 ? (
-                <div className="container attention">
+                <div className="">
                     <center className='text-white'>No candidates.</center>
                 </div>
             ) : (
@@ -228,15 +228,13 @@ function displayWinner(candidates) {
     };
     const renderWinner = (winner) => {
         return (
-            <div className="container-winner">
-                <div className="winner-info">
-                    <p className="winner-tag">Winner!</p>
-                    <h2> {winner.header}</h2>
-                    <p className="winner-slogan">{winner.slogan}</p>
-                </div>
-                <div className="winner-votes">
-                    <div className="votes-tag">Total Votes: </div>
-                    <div className="vote-count">{winner.voteCount}</div>
+            <div className="flex flex-col items-center justify-center p-5 text-center">
+                <div className="text-2xl font-bold text-red-500">Winner!</div>
+                <div className="text-xl font-bold mt-2 text-white">{winner.header}</div>
+                <div className="text-base mt-2 text-white">{winner.slogan}</div>
+                <div className="flex mt-5">
+                    <div className="text-sm font-medium mr-2 text-white">Total Votes:</div>
+                    <div className="text-sm font-medium text-red-500">{winner.voteCount}</div>
                 </div>
             </div>
         );
@@ -260,30 +258,15 @@ export function displayResults(candidates) {
             {candidates.length > 0 ? (
                 <div className="container-main">{displayWinner(candidates)}</div>
             ) : null}
-            <div className="container-main" style={{ borderTop: "1px solid" }}>
-                <h2>Results</h2>
-                <small>Total candidates: {candidates.length}</small>
+            <div className="item-center">
                 {candidates.length < 1 ? (
                     <div className="container attention">
-                        <center>No candidates.</center>
+                        <center className='text-white'>No candidates.</center>
                     </div>
                 ) : (
                     <>
-                        <div className="container">
-                            <table className='table table-bordered'>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Candidate</th>
-                                    <th>Votes</th>
-                                </tr>
-                                {candidates.map(renderResults)}
-                            </table>
-                        </div>
-                        <div
-                            className="container"
-                            style={{ border: "1px solid black" }}
-                        >
-                            <center>That is all.</center>
+                        <div className="flex justify-center items-center w-3/4 mx-auto ">
+                            <canvas id="myChart" width={400} height={300}></canvas>
                         </div>
                     </>
                 )}

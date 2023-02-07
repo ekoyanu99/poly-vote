@@ -146,7 +146,7 @@ export default class Home extends Component {
                     <div className='gradient-bg-welcome'>
                         {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
                         <div className="container-main">
-                            {!this.state.elStarted & !this.state.elEnded ? (
+                            {!this.state.elStarted && !this.state.elEnded ? (
                                 <div className="container-item info">
                                     <center>
                                         <h3 className='text-white'>The election has not been initialize.</h3>
@@ -167,19 +167,24 @@ export default class Home extends Component {
                             <>
                                 <UserHome el={this.state.elDetails} account={this.state.account} />
                             </>
-                        ) : !this.state.isElStarted && this.state.isElEnded ? (
+                        ) : !this.state.elStarted && this.state.elEnded ? (
                             <>
-                                <div className="container-item attention">
-                                    <center>
-                                        <h3>The Election ended.</h3>
-                                        <br />
-                                        <Link
-                                            to="/Results"
-                                            style={{ color: "black", textDecoration: "underline" }}
-                                        >
-                                            See results
-                                        </Link>
-                                    </center>
+                                <div className="flex w-full justify-center items-center">
+                                    <div className="flex mf:flex-row flex-col items-start justify-between md:p-10 py-6 px-2">
+                                        <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
+                                            <center>
+                                                <h3 className='text-white'>The Election ended.</h3>
+                                                <button className='text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer'>
+                                                    <Link
+                                                        to="/Results"
+                                                        className='text-white'
+                                                    >
+                                                        See results
+                                                    </Link>
+                                                </button>
+                                            </center>
+                                        </div>
+                                    </div>
                                 </div>
                             </>
                         ) : null}
@@ -208,110 +213,117 @@ export default class Home extends Component {
             };
 
             return (
-                <div>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        {!this.state.elStarted & !this.state.elEnded ? (
-                            <div className="container-main">
-                                {/* about-admin */}
-                                <div className="about-admin">
-                                    <h3>About Admin</h3>
-                                    <div className="container-item center-items">
-                                        <div>
-                                            <label className="label-home">
-                                                Full Name{" "}
-                                                {errors.adminFName && <EMsg msg="*required" />}
-                                                <input
-                                                    className="input-home"
-                                                    type="text"
-                                                    placeholder="First Name"
-                                                    {...register("adminFName", {
-                                                        required: true,
-                                                    })}
-                                                />
-                                                <input
-                                                    className="input-home"
-                                                    type="text"
-                                                    placeholder="Last Name"
-                                                    {...register("adminLName")}
-                                                />
-                                            </label>
 
-                                            <label className="label-home">
-                                                Email{" "}
-                                                {errors.adminEmail && (
-                                                    <EMsg msg={errors.adminEmail.message} />
-                                                )}
-                                                <input
-                                                    className="input-home"
-                                                    placeholder="eg. you@example.com"
-                                                    name="adminEmail"
-                                                    {...register("adminEmail", {
-                                                        required: "*Required",
-                                                        pattern: {
-                                                            value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/, // email validation using RegExp
-                                                            message: "*Invalid",
-                                                        },
-                                                    })}
-                                                />
-                                            </label>
+                <div className="flex w-full justify-center items-center">
+                    <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
+                        <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
+                            <div>
+                                <form onSubmit={handleSubmit(onSubmit)}>
+                                    {!this.state.elStarted & !this.state.elEnded ? (
+                                        <div className="container-main">
+                                            {/* about-admin */}
+                                            <div className="about-admin">
+                                                <h3>About Admin</h3>
+                                                <div className="container-item center-items">
+                                                    <div>
+                                                        <label className="label-home">
+                                                            Full Name{" "}
+                                                            {errors.adminFName && <EMsg msg="*required" />}
+                                                            <input
+                                                                className="input-home"
+                                                                type="text"
+                                                                placeholder="First Name"
+                                                                {...register("adminFName", {
+                                                                    required: true,
+                                                                })}
+                                                            />
+                                                            <input
+                                                                className="input-home"
+                                                                type="text"
+                                                                placeholder="Last Name"
+                                                                {...register("adminLName")}
+                                                            />
+                                                        </label>
 
-                                            <label className="label-home">
-                                                Job Title or Position{" "}
-                                                {errors.adminTitle && <EMsg msg="*required" />}
-                                                <input
-                                                    className="input-home"
-                                                    type="text"
-                                                    placeholder="eg. HR Head "
-                                                    {...register("adminTitle", {
-                                                        required: true,
-                                                    })}
-                                                />
-                                            </label>
+                                                        <label className="label-home">
+                                                            Email{" "}
+                                                            {errors.adminEmail && (
+                                                                <EMsg msg={errors.adminEmail.message} />
+                                                            )}
+                                                            <input
+                                                                className="input-home"
+                                                                placeholder="eg. you@example.com"
+                                                                name="adminEmail"
+                                                                {...register("adminEmail", {
+                                                                    required: "*Required",
+                                                                    pattern: {
+                                                                        value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/, // email validation using RegExp
+                                                                        message: "*Invalid",
+                                                                    },
+                                                                })}
+                                                            />
+                                                        </label>
+
+                                                        <label className="label-home">
+                                                            Job Title or Position{" "}
+                                                            {errors.adminTitle && <EMsg msg="*required" />}
+                                                            <input
+                                                                className="input-home"
+                                                                type="text"
+                                                                placeholder="eg. HR Head "
+                                                                {...register("adminTitle", {
+                                                                    required: true,
+                                                                })}
+                                                            />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/* about-election */}
+                                            <div className="about-election">
+                                                <h3>About Election</h3>
+                                                <div className="container-item center-items">
+                                                    <div>
+                                                        <label className="label-home">
+                                                            Election Title{" "}
+                                                            {errors.electionTitle && <EMsg msg="*required" />}
+                                                            <input
+                                                                className="input-home"
+                                                                type="text"
+                                                                placeholder="eg. School Election"
+                                                                {...register("electionTitle", {
+                                                                    required: true,
+                                                                })}
+                                                            />
+                                                        </label>
+                                                        <label className="label-home">
+                                                            Organization Name{" "}
+                                                            {errors.organizationName && <EMsg msg="*required" />}
+                                                            <input
+                                                                className="input-home"
+                                                                type="text"
+                                                                placeholder="eg. Lifeline Academy"
+                                                                {...register("organizationTitle", {
+                                                                    required: true,
+                                                                })}
+                                                            />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                {/* about-election */}
-                                <div className="about-election">
-                                    <h3>About Election</h3>
-                                    <div className="container-item center-items">
-                                        <div>
-                                            <label className="label-home">
-                                                Election Title{" "}
-                                                {errors.electionTitle && <EMsg msg="*required" />}
-                                                <input
-                                                    className="input-home"
-                                                    type="text"
-                                                    placeholder="eg. School Election"
-                                                    {...register("electionTitle", {
-                                                        required: true,
-                                                    })}
-                                                />
-                                            </label>
-                                            <label className="label-home">
-                                                Organization Name{" "}
-                                                {errors.organizationName && <EMsg msg="*required" />}
-                                                <input
-                                                    className="input-home"
-                                                    type="text"
-                                                    placeholder="eg. Lifeline Academy"
-                                                    {...register("organizationTitle", {
-                                                        required: true,
-                                                    })}
-                                                />
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                                    ) : this.state.elStarted ? (
+                                        <UserHome el={this.state.elDetails} account={this.state.account} />
+                                    ) : null}
+                                    <StartEnd
+                                        elStarted={this.state.elStarted}
+                                        elEnded={this.state.elEnded}
+                                        endElFn={this.endElection}
+                                    />
+                                </form>
                             </div>
-                        ) : this.state.elStarted ? (
-                            <UserHome el={this.state.elDetails} account={this.state.account} />
-                        ) : null}
-                        <StartEnd
-                            elStarted={this.state.elStarted}
-                            elEnded={this.state.elEnded}
-                            endElFn={this.endElection}
-                        />
-                    </form>
+                        </div>
+                    </div>
                 </div>
             );
         };

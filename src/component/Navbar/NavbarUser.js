@@ -14,9 +14,9 @@ export default function NavbarUser() {
                 <li className="mx-4 cursor-pointer"><a href="/Registration">Registration</a></li>
                 <li className="mx-4 cursor-pointer"><a href="/Voting">Voting</a></li>
                 <li className="mx-4 cursor-pointer"><a href="/Results">Results</a></li>
-                <li className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
+                {/* <li className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
                     Connect Wallet
-                </li>
+                </li> */}
             </ul>
 
             <div className="flex relative">
@@ -35,9 +35,9 @@ export default function NavbarUser() {
                         <li className="mx-4 cursor-pointer"><a href="/Registration">Registration</a></li>
                         <li className="mx-4 cursor-pointer"><a href="/Voting">Voting</a></li>
                         <li className="mx-4 cursor-pointer"><a href="/Results">Results</a></li>
-                        <li className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
+                        {/* <li className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
                             Connect Wallet
-                        </li>
+                        </li> */}
                     </ul>
                 )}
             </div>

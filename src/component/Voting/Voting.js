@@ -170,9 +170,8 @@ export default class Voting extends Component {
         return (
             <>
                 <div className='min-h-screen'>
-                    <div className='gradient-bg-welcome'>
+                    <div>
                         {this.state.isAdmin ? <NavbarAdmin /> : <Navbar />}
-
                         <div>
                             {!this.state.elStarted && !this.state.elEnded ? (
                                 <NotInit />
@@ -256,17 +255,22 @@ export default class Voting extends Component {
                                 </>
                             ) : !this.state.elStarted && this.state.elEnded ? (
                                 <>
-                                    <div className="container attention">
-                                        <center>
-                                            <h3>The Election ended.</h3>
-                                            <br />
-                                            <Link
-                                                to="/Results"
-                                                style={{ color: "black", textDecoration: "underline" }}
-                                            >
-                                                See results
-                                            </Link>
-                                        </center>
+                                    <div className="flex w-full justify-center items-center">
+                                        <div className="flex mf:flex-row flex-col items-start justify-between md:p-10 py-6 px-2">
+                                            <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
+                                                <center>
+                                                    <h3 className='text-white'>The Election ended.</h3>
+                                                    <button className='text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer'>
+                                                        <Link
+                                                            to="/Results"
+                                                            className='text-white'
+                                                        >
+                                                            See results
+                                                        </Link>
+                                                    </button>
+                                                </center>
+                                            </div>
+                                        </div>
                                     </div>
                                 </>
                             ) : null}

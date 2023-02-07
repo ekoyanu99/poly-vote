@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 const StartEnd = (props) => {
     const btn = 'text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer'
     return (
-        <div className="flex justify-center items-center">
+        // <div className="flex justify-center items-center"></div>
+        <div className="justify-center items-center">
             {!props.elStarted ? (
                 <>
                     {/* edit here to display start election Again button */}
@@ -29,18 +30,12 @@ const StartEnd = (props) => {
                             </div>
                         </>
                     ) : (
-                        <div>
-                            <center>
-                                <p className="text-white">Re-deploy the contract to start election again.</p>
-                            </center>
-                        </div>
+                        <h3 className="text-white">Re-deploy the contract to start election again.</h3>
                     )}
                     {props.elEnded ? (
-                        <div>
-                            <center>
-                                <p className="text-white">The election ended.</p>
-                            </center>
-                        </div>
+                        <center>
+                            <p className="text-white">The election ended.</p>
+                        </center>
                     ) : null}
                 </>
             ) : (
