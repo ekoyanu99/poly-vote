@@ -119,45 +119,60 @@ export default class AddCandidate extends Component {
         }
         return (
             <>
-                <NavbarAdmin />
-                <div className="container-main">
-                    <h2>Add a new candidate</h2>
-                    <small>Total candidates: {this.state.candidateCount}</small>
-                    <div className="container-item">
-                        <form className="form">
-                            <label className={"label-ac"}>
-                                Header
-                                <input
-                                    className={"input-ac"}
-                                    type="text"
-                                    placeholder="eg. Marcus"
-                                    value={this.state.header}
-                                    onChange={this.updateHeader}
-                                />
-                            </label>
-                            <label className={"label-ac"}>
-                                Slogan
-                                <input
-                                    className={"input-ac"}
-                                    type="text"
-                                    placeholder="eg. It is what it is"
-                                    value={this.state.slogan}
-                                    onChange={this.updateSlogan}
-                                />
-                            </label>
-                            <button
-                                className="btn btn-primary"
-                                disabled={
-                                    this.state.header.length < 3 || this.state.header.length > 21
-                                }
-                                onClick={this.addCandidate}
-                            >
-                                Add
-                            </button>
-                        </form>
+                <div className='min-h-screen'>
+                    <NavbarAdmin />
+                    <div className="gradient-bg-services">
+                        <div className='flex w-full justify-center items-center'>
+                            <div className='flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4'>
+                                <div className='flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10'>
+                                    <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
+                                        <h2 className='text-xl sm:text-3xl text-white text-gradient py-1'>Add a new candidate</h2>
+                                        <small className='text-white'>Total candidates: {this.state.candidateCount}</small>
+                                        <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
+                                            <form className="form">
+                                                <div className="mb-3">
+                                                    <label className={`label-ac text-white`}>
+                                                        Header
+                                                        <input
+                                                            className={`input-ac my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism`}
+                                                            type="text"
+                                                            placeholder="eg. Marcus"
+                                                            value={this.state.header}
+                                                            onChange={this.updateHeader}
+                                                        />
+                                                    </label>
+                                                </div>
+                                                <div className="mb-3">
+                                                    <label className={`label-ac text-white`}>
+                                                        Slogan
+                                                        <input
+                                                            className={`input-ac my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism`}
+                                                            type="text"
+                                                            placeholder="eg. It is what it is"
+                                                            value={this.state.slogan}
+                                                            onChange={this.updateSlogan}
+                                                        />
+                                                    </label>
+                                                </div>
+                                                <button
+                                                    type='button'
+                                                    className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer"
+                                                    disabled={
+                                                        this.state.header.length < 3 || this.state.header.length > 21
+                                                    }
+                                                    onClick={this.addCandidate}
+                                                >
+                                                    Add
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            {loadAdded(this.state.candidates)}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                {loadAdded(this.state.candidates)}
             </>
         );
     }
@@ -167,12 +182,7 @@ export function loadAdded(candidates) {
         return (
             <>
                 <div className="container-list success">
-                    <div
-                        style={{
-                            maxHeight: "21px",
-                            overflow: "auto",
-                        }}
-                    >
+                    <div>
                         {candidate.id}. <strong>{candidate.header}</strong>:{" "}
                         {candidate.slogan}
                     </div>
@@ -181,25 +191,22 @@ export function loadAdded(candidates) {
         );
     };
     return (
-        <div className="container-main" style={{ borderTop: "1px solid" }}>
-            <div className="container-item info">
-                <center>Candidates List</center>
+        <div className='flex w-full justify-center items-center'>
+            <div className='flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4'>
+                <div className='flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10'>
+                    <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
+                        <h4 className='text-xl sm:text-3xl text-white text-gradient py-1'>Candidates List</h4>
+                        {candidates.length < 1 ? (
+                            <h6 className='text-xl text-white py-1'>No candidates added.</h6>
+                        ) : (
+                            <div className='text-white'>
+                                {candidates.map(renderAdded)}
+                            </div>
+                        )}
+
+                    </div>
+                </div>
             </div>
-            {candidates.length < 1 ? (
-                <div className="container-item alert">
-                    <center>No candidates added.</center>
-                </div>
-            ) : (
-                <div
-                    className="container-item"
-                    style={{
-                        display: "block",
-                        backgroundColor: "#DDFFFF",
-                    }}
-                >
-                    {candidates.map(renderAdded)}
-                </div>
-            )}
         </div>
     );
 }
