@@ -8,8 +8,6 @@ import Loader from '../Loader';
 import getWeb3 from '../../getWeb3';
 import Election from '../utils/Election.json';
 
-//import './Registration.css';
-
 export default class Registration extends Component {
     constructor(props) {
         super(props);
@@ -269,13 +267,11 @@ export function loadCurrentVoter(voter, isRegistered) {
                     Your Registered Info
                 </h1>
                 <br />
-                <div
-                    className='flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10'
-                >
+                <div className='sm:flex flex-1 justify-start items-center flex-col mf:mr-10 sm:flex-col'>
                     <table className={`table text-center border-separate border-spacing-2 border border-slate-500 ${companyCommonStyles}`}>
                         <tr>
                             <th className='border border-slate-600'>Account Address</th>
-                            <td className='border border-slate-600'>{voter.address}</td>
+                            <td className='border border-slate-600 '>{voter.address}</td>
                         </tr>
                         <tr>
                             <th className='border border-slate-600'>Name</th>
@@ -303,4 +299,3 @@ export function loadCurrentVoter(voter, isRegistered) {
         </>
     );
 }
-
