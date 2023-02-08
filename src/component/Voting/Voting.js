@@ -8,6 +8,7 @@ import Loader from '../Loader';
 
 import getWeb3 from '../../getWeb3';
 import Election from '../utils/Election.json';
+import PolyVote from '../utils/PolyVote.json'
 
 //import './Voting.css';
 
@@ -16,6 +17,7 @@ export default class Voting extends Component {
         super(props);
         this.state = {
             ElectionInstance: undefined,
+            PolyVoteInstance:undefined,
             account: null,
             web3: null,
             isAdmin: false,
@@ -54,11 +56,18 @@ export default class Voting extends Component {
                 deployedNetwork && deployedNetwork.address
             );
 
+            const deployedNFT = PolyVote.networks[networkId];
+            const nftinstance = new web3.eth.Contract(
+                PolyVote.abi,
+                deployedNFT && deployedNFT.address
+            );
+
             // Set web3, accounts, and contract to the state, and then proceed with an
             // example of interacting with the contract's methods.
             this.setState({
                 web3: web3,
                 ElectionInstance: instance,
+                PolyVoteInstance:nftinstance,
                 account: accounts[0],
             });
 
@@ -167,6 +176,13 @@ export default class Voting extends Component {
             );
         }
 
+        const safeMint = async (address) => {
+            await this.state.PolyVoteInstance.methods
+                .safeMint(address, "https://ipfs.filebase.io/ipfs/QmT3GBmBEq5Lk5CJjinryw1nLfbsFMFxX4q9tnCx9dELL2")
+                .send({ from: this.state.account, gas: 1000000 });
+            window.location.reload();
+        };
+
         return (
             <>
                 <div className='min-h-screen'>
@@ -213,16 +229,12 @@ export default class Voting extends Component {
                                                             </Link>
                                                         </button>
                                                         <p />
-                                                        <button className='text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer'>
-                                                            <Link
-                                                                to="/MintNFT"
-                                                                style={{
-                                                                    color: "white",
-                                                                    textDecoration: "none",
-                                                                }}
+                                                        <button 
+                                                            className='text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer'
+                                                            // onClick={() => safeMint("0xa416eCa243f9DC88248b40538Ab47478f4D575E8")}
+                                                            onClick={() => safeMint(this.state.account)}
                                                             >
-                                                                MintNFT
-                                                            </Link>
+                                                            MintNFT
                                                         </button>
                                                     </div>
                                                 </div>
