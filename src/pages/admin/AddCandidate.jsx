@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 
-import Navbar from '../../Navbar/NavbarUser';
-import NavbarAdmin from '../../Navbar/NavbarAdmin';
-import Loader from '../../Loader';
+import {Navbar,NavbarAdmin, Loader, AdminOnly} from '../../components';
 
-import getWeb3 from '../../../getWeb3';
+import getWeb3 from '../../getWeb3';
 import Election from '../../utils/Election.json';
-
-import AdminOnly from '../../AdminOnly';
 
 export default class AddCandidate extends Component {
 

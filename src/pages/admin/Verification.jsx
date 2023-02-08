@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import Navbar from '../../Navbar/NavbarUser';
-import NavbarAdmin from '../../Navbar/NavbarAdmin';
-import Loader from '../../Loader';
 
-import getWeb3 from '../../../getWeb3';
+import {Navbar,NavbarAdmin, Loader, AdminOnly} from '../../components';
+
+import getWeb3 from '../../getWeb3';
 import Election from '../../utils/Election.json';
 import PolyVote from '../../utils/PolyVote.json';
-
-import AdminOnly from '../../AdminOnly';
 
 const companyCommonStyles =
     "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";

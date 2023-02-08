@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Navbar from '../Navbar/NavbarUser';
-import NavbarAdmin from '../Navbar/NavbarAdmin';
-import NotInit from '../NotInit';
-import Loader from '../Loader';
+import {Navbar, NavbarAdmin, NotInit, Loader} from '../components';
 
-import getWeb3 from '../../getWeb3';
+import getWeb3 from '../getWeb3';
 import Election from '../utils/Election.json';
 import PolyVote from '../utils/PolyVote.json'
 

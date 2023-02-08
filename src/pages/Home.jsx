@@ -3,18 +3,11 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 // Components
-import Navbar from './Navbar/NavbarUser';
-import NavbarAdmin from './Navbar/NavbarAdmin';
-import UserHome from './UserHome';
-import StartEnd from './StartEnd';
-// import ElectionStatus from './ElectionStatus';
-import Loader from './Loader';
-// import Footer from './Footer/Footer';
-import Guide from './Guide';
+import {Navbar,NavbarAdmin,UserHome, StartEnd, Loader, Guide} from '../components';
 
 // Contract
 import getWeb3 from '../getWeb3';
-import Election from './utils/Election.json';
+import Election from '../utils/Election.json';
 
 // CSS
 import '../index.css';

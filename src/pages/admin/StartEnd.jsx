@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 
-import Navbar from '../../Navbar/Navigation';
-import NavbarAdmin from '../../Navbar/NavigationAdmin';
-import Loader from '../../Loader';
+import {Navbar,NavbarAdmin, Loader, AdminOnly} from '../../components';
 
-import getWeb3 from '../../../getWeb3';
+import getWeb3 from '../../getWeb3';
 import Election from '../../utils/Election.json';
 
-import AdminOnly from '../../AdminOnly';
-
-import '../../../index.css'
+import '../../index.css';
 
 export default class StartEnd extends Component {
 

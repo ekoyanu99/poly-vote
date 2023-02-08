@@ -2,7 +2,7 @@ import React from "react";
 import { SiHiveBlockchain } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 
-import { shortenAddress } from "./utils/shortenAddress";
+import {shortenAddress} from '../utils/shortenAddress'
 
 import '../index.css';
 

@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 
-import Navbar from '../Navbar/NavbarUser';
-import NavbarAdmin from '../Navbar/NavbarAdmin';
-import NotInit from '../NotInit';
-import Loader from '../Loader';
+import {Navbar, NavbarAdmin, NotInit, Loader} from '../components';
 
-import getWeb3 from '../../getWeb3';
+import getWeb3 from '../getWeb3';
 import Election from '../utils/Election.json';
 
 import Chart from 'chart.js/auto';
-
-// import TemporaryResults from './TemporaryResults';
-// import './Result.css';
 
 export default class Result extends Component {
     constructor(props) {
