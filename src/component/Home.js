@@ -7,9 +7,9 @@ import Navbar from './Navbar/NavbarUser';
 import NavbarAdmin from './Navbar/NavbarAdmin';
 import UserHome from './UserHome';
 import StartEnd from './StartEnd';
-import ElectionStatus from './ElectionStatus';
+// import ElectionStatus from './ElectionStatus';
 import Loader from './Loader';
-import Footer from './Footer/Footer';
+// import Footer from './Footer/Footer';
 import Guide from './Guide';
 
 // Contract
@@ -215,22 +215,22 @@ export default class Home extends Component {
             return (
 
                 <div className="flex w-full justify-center items-center">
-                    <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
+                    <div className="flex mf:flex-row flex-col items-start justify-between md:p-10 py-6 px-2">
                         <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
                             <div>
                                 <form onSubmit={handleSubmit(onSubmit)}>
                                     {!this.state.elStarted & !this.state.elEnded ? (
-                                        <div className="container-main">
+                                        <div className="p-2 sm:w-96 w-full flex flex-col justify-start items-center white-glassmorphism">
                                             {/* about-admin */}
                                             <div className="about-admin">
-                                                <h3>About Admin</h3>
-                                                <div className="container-item center-items">
+                                                <h2 className='text-white text-center'>About Admin</h2>
+                                                <div className="mb-3">
                                                     <div>
-                                                        <label className="label-home">
+                                                        <label className="label-home text-white">
                                                             Full Name{" "}
                                                             {errors.adminFName && <EMsg msg="*required" />}
                                                             <input
-                                                                className="input-home"
+                                                                className="input-home my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm blue-glassmorphism"
                                                                 type="text"
                                                                 placeholder="First Name"
                                                                 {...register("adminFName", {
@@ -238,20 +238,20 @@ export default class Home extends Component {
                                                                 })}
                                                             />
                                                             <input
-                                                                className="input-home"
+                                                                className="input-home my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm blue-glassmorphism"
                                                                 type="text"
                                                                 placeholder="Last Name"
                                                                 {...register("adminLName")}
                                                             />
                                                         </label>
 
-                                                        <label className="label-home">
+                                                        <label className="label-home text-white">
                                                             Email{" "}
                                                             {errors.adminEmail && (
                                                                 <EMsg msg={errors.adminEmail.message} />
                                                             )}
                                                             <input
-                                                                className="input-home"
+                                                                className="input-home my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm blue-glassmorphism"
                                                                 placeholder="eg. you@example.com"
                                                                 name="adminEmail"
                                                                 {...register("adminEmail", {
@@ -264,11 +264,11 @@ export default class Home extends Component {
                                                             />
                                                         </label>
 
-                                                        <label className="label-home">
+                                                        <label className="label-home text-white">
                                                             Job Title or Position{" "}
                                                             {errors.adminTitle && <EMsg msg="*required" />}
                                                             <input
-                                                                className="input-home"
+                                                                className="input-home my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm blue-glassmorphism"
                                                                 type="text"
                                                                 placeholder="eg. HR Head "
                                                                 {...register("adminTitle", {
@@ -281,14 +281,14 @@ export default class Home extends Component {
                                             </div>
                                             {/* about-election */}
                                             <div className="about-election">
-                                                <h3>About Election</h3>
-                                                <div className="container-item center-items">
+                                                <h2 className='text-white text-center'>About Election</h2>
+                                                <div className="mt-3">
                                                     <div>
-                                                        <label className="label-home">
+                                                        <label className="label-home text-white">
                                                             Election Title{" "}
                                                             {errors.electionTitle && <EMsg msg="*required" />}
                                                             <input
-                                                                className="input-home"
+                                                                className="input-home my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm blue-glassmorphism"
                                                                 type="text"
                                                                 placeholder="eg. School Election"
                                                                 {...register("electionTitle", {
@@ -296,11 +296,11 @@ export default class Home extends Component {
                                                                 })}
                                                             />
                                                         </label>
-                                                        <label className="label-home">
+                                                        <label className="label-home text-white">
                                                             Organization Name{" "}
                                                             {errors.organizationName && <EMsg msg="*required" />}
                                                             <input
-                                                                className="input-home"
+                                                                className="input-home my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm blue-glassmorphism"
                                                                 type="text"
                                                                 placeholder="eg. Lifeline Academy"
                                                                 {...register("organizationTitle", {

@@ -10,7 +10,7 @@ import Election from '../utils/Election.json';
 
 import Chart from 'chart.js/auto';
 
-import TemporaryResults from './TemporaryResults';
+// import TemporaryResults from './TemporaryResults';
 // import './Result.css';
 
 export default class Result extends Component {
@@ -198,10 +198,8 @@ export function temporaryResults(candidates) {
             ) : (
                 <>
                     <div className='flex w-full justify-center items-center'>
-                        <h2 className='text-white'>Temporary Results</h2>
-                        <p className='text-white'>Total candidates: {candidates.length}</p>
+                        <h3 className='text-white'>Temporary Results | Total candidates: {candidates.length}</h3>
                     </div>
-
                     <div className="flex justify-center items-center w-3/4 mx-auto ">
                         <canvas id="myChart" width={500} height={500}></canvas>
                     </div>
@@ -244,15 +242,6 @@ function displayWinner(candidates) {
 }
 
 export function displayResults(candidates) {
-    const renderResults = (candidate) => {
-        return (
-            <tr key={candidate.id}>
-                <td>{candidate.id}</td>
-                <td>{candidate.header}</td>
-                <td>{candidate.voteCount}</td>
-            </tr>
-        );
-    };
     return (
         <>
             {candidates.length > 0 ? (
