@@ -159,8 +159,11 @@ contract Election {
         voterDetails[voterAddress].isVerified = _verifedStatus;
     }
 
+    mapping(address => bool) public voted;
+
     // Vote
     function vote(uint256 candidateId) public {
+        require(!voted[msg.sender], "You already voted.");
         require(voterDetails[msg.sender].hasVoted == false);
         require(voterDetails[msg.sender].isVerified == true);
         require(start == true);
@@ -171,6 +174,16 @@ contract Election {
 
     // End election
     function endElection() public onlyAdmin {
+        // Check if there is no tie between candidate vote counts
+        for (uint256 i = 0; i < candidateCount; i++) {
+            for (uint256 j = i + 1; j < candidateCount; j++) {
+                require(
+                    candidateDetails[i].voteCount !=
+                        candidateDetails[j].voteCount,
+                    "Cannot end election, candidate vote counts are equal"
+                );
+            }
+        }
         end = true;
         start = false;
     }
