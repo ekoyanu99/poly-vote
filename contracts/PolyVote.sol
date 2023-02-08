@@ -37,10 +37,10 @@ contract PolyVote is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         _tokenIdCounter.increment();
     }
 
-    function _baseURI() internal pure override returns (string memory) {
-        return
-            "https://ipfs.filebase.io/ipfs/QmT3GBmBEq5Lk5CJjinryw1nLfbsFMFxX4q9tnCx9dELL2";
-    }
+    // function _baseURI() internal pure override returns (string memory) {
+    //     return
+    //         "https://ipfs.filebase.io/ipfs/QmT3GBmBEq5Lk5CJjinryw1nLfbsFMFxX4q9tnCx9dELL2";
+    // }
 
     function safeMint(address to, string memory uri) public {
         require(isWhiteListed[msg.sender] == true);
