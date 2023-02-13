@@ -236,19 +236,19 @@ export default class Voting extends Component {
                                                     </div>
                                                 </div>
                                             ) : (
-                                                <div className="container info">
-                                                    <center className='text-white'>Go ahead and cast your vote.</center>
+                                                <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
+                                                    <p className='text-white'>Go ahead and cast your vote.</p>
                                                 </div>
                                             )
                                         ) : (
-                                            <div className="container attention">
-                                                <center className='text-white'>Please wait for admin to verify.</center>
+                                            <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
+                                                <p className='text-white'>Please wait for admin to verify.</p>
                                             </div>
                                         )
                                     ) : (
                                         <>
-                                            <div className="container attention">
-                                                <center>
+                                            <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
+                                                
                                                     <p className='text-white'>You're not registered. Please register first.</p>
                                                     <br />
                                                     <Link
@@ -257,7 +257,7 @@ export default class Voting extends Component {
                                                     >
                                                         Registration Page
                                                     </Link>
-                                                </center>
+                                                
                                             </div>
                                         </>
                                     )}

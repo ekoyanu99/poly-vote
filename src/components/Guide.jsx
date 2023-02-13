@@ -34,7 +34,7 @@ const Guide = () => (
                     color="bg-[#2952E3]"
                     title="Connect Wallet"
                     icon={<BsFillCaretRightFill fontSize={21} className="text-white" />}
-                    subtitle="Connect your wallet. You can use Metamask or other injected wallet. Make sure connect on Polygone Testnet Network (Mumbai)."
+                    subtitle="Connect your wallet. You can use Metamask or other injected wallet. Make sure connect on Polygon Testnet Network (Mumbai)."
                 />
                 <GuideCard
                     color="bg-[#8945F8]"
