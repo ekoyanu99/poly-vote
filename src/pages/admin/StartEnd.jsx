@@ -131,8 +131,8 @@ export default class StartEnd extends Component {
                                 </center>
                             </div>
                             <button type='button' onClick={this.endElection} className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer">
-                                    End
-                                </button>
+                                End
+                            </button>
                         </>
                     )}
                 </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {Navbar,NavbarAdmin, Loader, AdminOnly} from '../../components';
+import { Navbar, NavbarAdmin, Loader, AdminOnly } from '../../components';
 
 import getWeb3 from '../../getWeb3';
 import Election from '../../utils/Election.json';
@@ -15,7 +15,7 @@ export default class Verification extends Component {
         super(props);
         this.state = {
             ElectionInstance: undefined,
-            PolyVoteInstance:undefined,
+            PolyVoteInstance: undefined,
             account: null,
             web3: null,
             isAdmin: false,
@@ -53,13 +53,7 @@ export default class Verification extends Component {
 
             // Set web3, accounts, and contract to the state, and then proceed with an
             // example of interacting with the contract's methods.
-            this.setState({ web3, ElectionInstance: instance, PolyVoteInstance:nftinstance, account: accounts[0] });
-
-            // Total number of candidates
-            const candidateCount = await instance.methods
-                .getTotalCandidate()
-                .call();
-            this.setState({ candidateCount: candidateCount });
+            this.setState({ web3, ElectionInstance: instance, PolyVoteInstance: nftinstance, account: accounts[0] });
 
             // Admin account and verification
             const admin = await instance.methods.getAdmin().call();
@@ -89,6 +83,12 @@ export default class Verification extends Component {
                 });
             }
             this.setState({ voters: this.state.voters });
+
+            // Total number of candidates
+            const candidateCount = await instance.methods
+                .getTotalCandidate()
+                .call();
+            this.setState({ candidateCount: candidateCount });
         } catch (error) {
             // Catch any errors for any of the above operations.
             // alert(

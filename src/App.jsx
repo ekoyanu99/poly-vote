@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import { BsFillFileLock2Fill } from "react-icons/bs";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {TbError404} from "react-icons/tb";
 
 import Home from './pages/Home';

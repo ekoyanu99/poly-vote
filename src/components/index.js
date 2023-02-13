@@ -9,3 +9,4 @@ export {default as NotInit} from './NotInit';
 export {default as StartEnd} from './StartEnd';
 export {default as TemporaryResults} from './TemporaryResults';
 export {default as UserHome} from './UserHome';
+export {default as Homes} from './Home';

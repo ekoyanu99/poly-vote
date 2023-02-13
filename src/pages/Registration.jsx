@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {Navbar,NavbarAdmin,NotInit, Loader} from '../components';
+import {Navbar,NavbarAdmin,NotInit,Loader} from '../components';
 
 import getWeb3 from '../getWeb3';
 import Election from '../utils/Election.json';
@@ -78,7 +78,7 @@ export default class Registration extends Component {
             this.setState({ voterCount: voterCount });
 
             // Loading all the voters
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < voterCount; i++) {
                 const voterAddress = await this.state.ElectionInstance.methods
                     .voters(i)
                     .call();

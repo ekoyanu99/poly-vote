@@ -1,7 +1,6 @@
 import React from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
-import {FaRegistered} from "react-icons/fa";
 
 export default function NavbarUser() {
     const [toggleMenu, setToggleMenu] = React.useState(false);

@@ -25,7 +25,7 @@ const Guide = () => (
                     PolyVote
                 </h1>
                 <p className="text-left my-2 text-white font-light md:w-9/12 w-11/12 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis possimus atque dolorum, quae delectus eius nesciunt voluptates est consectetur tenetur nulla numquam facilis asperiores at harum tempore voluptatem adipisci! Beatae.
+                    Simply Connect your wallet, Register, Cast your Vote, and Mint your own NFT
                 </p>
             </div>
 
@@ -34,25 +34,25 @@ const Guide = () => (
                     color="bg-[#2952E3]"
                     title="Connect Wallet"
                     icon={<BsFillCaretRightFill fontSize={21} className="text-white" />}
-                    subtitle="Connect your wallet. You can use Metamask or other injected wallet. Make sure connect on Mumbai Network"
+                    subtitle="Connect your wallet. You can use Metamask or other injected wallet. Make sure connect on Polygone Testnet Network (Mumbai)."
                 />
                 <GuideCard
                     color="bg-[#8945F8]"
                     title="Register as Voter"
                     icon={<BsFillCaretRightFill fontSize={21} className="text-white" />}
-                    subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis possimus atque dolorum, quae delectus eius"
+                    subtitle="Fill out the form to register as a voter, then wait until admins verify your account before you can start casting your vote."
                 />
                 <GuideCard
                     color="bg-[#f545b4]"
                     title="Vote Candidate"
                     icon={<BsFillCaretRightFill fontSize={21} className="text-white" />}
-                    subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis possimus atque dolorum, quae delectus eius"
+                    subtitle="Enjoy casting your vote once your account has been approved by the admin. Make the right decision when voting for your candidate. "
                 />
                 <GuideCard
                     color="bg-[#45f885]"
                     title="Mint NFT"
                     icon={<BsFillCaretRightFill fontSize={21} className="text-white" />}
-                    subtitle="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis possimus atque dolorum, quae delectus eius"
+                    subtitle="Mint NFT to prove that you participated in the session vote. You can also view Minted NFT on OpenSea."
                 />
             </div>
         </div>

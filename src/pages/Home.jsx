@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 // Components
-import {Navbar,NavbarAdmin,UserHome, StartEnd, Loader, Guide} from '../components';
+import {Navbar,NavbarAdmin,UserHome, StartEnd, Guide, Homes} from '../components';
 
 // Contract
 import getWeb3 from '../getWeb3';
@@ -126,7 +126,7 @@ export default class Home extends Component {
                     <div className='min-h-screen'>
                         <div className='gradient-bg-welcome'>
                             <Navbar />
-                            <Loader />
+                            <Homes />
                         </div>
                         <Guide />
                     </div>
