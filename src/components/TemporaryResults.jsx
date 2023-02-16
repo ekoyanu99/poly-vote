@@ -124,9 +124,6 @@ export default class TemporaryResults extends Component {
                 data: data,
                 options: options
             });
-
-            console.log(data)
-            console.log(options)
         } catch (error) {
             // Catch any errors for any of the above operations.
             // alert(

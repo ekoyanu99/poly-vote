@@ -60,20 +60,23 @@ export default class Verification extends Component {
             if (this.state.account === admin) {
                 this.setState({ isAdmin: true });
             }
+
             // Total number of voters
-            const voterCount = await instance.methods
+            const voterCount = await this.state.ElectionInstance.methods
                 .getTotalVoter()
                 .call();
             this.setState({ voterCount: voterCount });
+
             // Loading all the voters
-            for (let i = 0; i < this.state.voterCount; i++) {
-                const voterAddress = await instance.methods
+            const newVoters = [];
+            for (let i = 0; i < voterCount; i++) {
+                const voterAddress = await this.state.ElectionInstance.methods
                     .voters(i)
                     .call();
-                const voter = await instance.methods
+                const voter = await this.state.ElectionInstance.methods
                     .voterDetails(voterAddress)
                     .call();
-                this.state.voters.push({
+                newVoters.push({
                     address: voter.voterAddress,
                     name: voter.name,
                     phone: voter.phone,
@@ -82,7 +85,7 @@ export default class Verification extends Component {
                     isRegistered: voter.isRegistered,
                 });
             }
-            this.setState({ voters: this.state.voters });
+            this.setState({ voters: newVoters });
 
             // Total number of candidates
             const candidateCount = await instance.methods

@@ -52,7 +52,6 @@ export default class Home extends Component {
             });
 
             const admin = await instance.methods.getAdmin().call();
-            console.log(admin);
             if (this.state.account === admin) {
                 this.setState({ isAdmin: true });
             }
