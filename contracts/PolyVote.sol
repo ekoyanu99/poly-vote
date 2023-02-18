@@ -7,10 +7,18 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
+import "./Election.sol";
+
 contract PolyVote is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
     mapping(address => bool) internal isWhiteListed;
+
+    Election private _election;
+
+    constructor() ERC721("PolyVote", "PVT") {
+        _tokenIdCounter.increment();
+    }
 
     // add remove whitelist
     function addWhiteList(address _newUser) external onlyOwner {
@@ -33,17 +41,12 @@ contract PolyVote is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     Counters.Counter private _tokenIdCounter;
     uint256 maxSupply = 10000;
 
-    constructor() ERC721("PolyVote", "PVT") {
-        _tokenIdCounter.increment();
-    }
-
-    // function _baseURI() internal pure override returns (string memory) {
-    //     return
-    //         "https://ipfs.filebase.io/ipfs/QmT3GBmBEq5Lk5CJjinryw1nLfbsFMFxX4q9tnCx9dELL2";
-    // }
-
     function safeMint(address to, string memory uri) public {
-        require(isWhiteListed[msg.sender] == true);
+        // require(_election.getStart() == true);
+        require(
+            isWhiteListed[msg.sender] == true,
+            "User not authorized to mint"
+        );
         require(
             _tokenIdCounter.current() <= maxSupply,
             "I'm sorry we reached the cap"

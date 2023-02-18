@@ -170,20 +170,29 @@ contract Election {
         require(end == false);
         candidateDetails[candidateId].voteCount += 1;
         voterDetails[msg.sender].hasVoted = true;
+        voted[msg.sender] = true;
     }
 
     // End election
     function endElection() public onlyAdmin {
-        // Check if there is no tie between candidate vote counts
-        for (uint256 i = 0; i < candidateCount; i++) {
-            for (uint256 j = i + 1; j < candidateCount; j++) {
-                require(
-                    candidateDetails[i].voteCount !=
-                        candidateDetails[j].voteCount,
-                    "Cannot end election, candidate vote counts are equal"
-                );
+        uint maxVotes = 0;
+        uint maxVotesId = 0;
+        for (uint i = 0; i < candidateCount; i++) {
+            if (candidateDetails[i].voteCount > maxVotes) {
+                maxVotes = candidateDetails[i].voteCount;
+                maxVotesId = i;
             }
         }
+
+        uint equalVotes = 0;
+        for (uint i = 0; i < candidateCount; i++) {
+            if (candidateDetails[i].voteCount == maxVotes) {
+                equalVotes++;
+            }
+        }
+
+        require(equalVotes == 1, "Election cannot end with equal vote count.");
+
         end = true;
         start = false;
     }
