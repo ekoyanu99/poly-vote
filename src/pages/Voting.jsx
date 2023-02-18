@@ -175,7 +175,7 @@ export default class Voting extends Component {
 
         const safeMint = async (address) => {
             await this.state.PolyVoteInstance.methods
-                .safeMint(address, "https://ipfs.filebase.io/ipfs/QmT3GBmBEq5Lk5CJjinryw1nLfbsFMFxX4q9tnCx9dELL2")
+                .safeMint(address, "https://ipfs.filebase.io/ipfs/QmRGFGbufiNCoS1vv2x26jxzdjMkEZqkLBo8MSRYqQokfC")
                 .send({ from: this.state.account, gas: 1000000 });
             window.location.reload();
         };
