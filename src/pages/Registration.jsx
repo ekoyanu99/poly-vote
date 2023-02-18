@@ -191,7 +191,7 @@ export default class Registration extends Component {
                                                                     className={`form-control my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism`}
 
                                                                     type="number"
-                                                                    placeholder="eg. 8231234567"
+                                                                    placeholder="eg. 628231234567"
                                                                     value={this.state.voterPhone}
                                                                     onChange={this.updateVoterPhone}
                                                                 />
@@ -201,7 +201,7 @@ export default class Registration extends Component {
                                                             type='button'
                                                             className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer"
                                                             disabled={
-                                                                this.state.voterPhone.length !== 10 ||
+                                                                this.state.voterPhone.length !== 13 ||
                                                                 this.state.currentVoter.isVerified
                                                             }
                                                             onClick={this.registerAsVoter}

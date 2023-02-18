@@ -106,14 +106,17 @@ export default class Verification extends Component {
             await this.state.ElectionInstance.methods
                 .verifyVoter(verifiedStatus, address)
                 .send({ from: this.state.account, gas: 1000000 });
-            window.location.reload();
         };
         const verifyWhitelist = async (address) => {
             await this.state.PolyVoteInstance.methods
                 .addWhiteList(address)
                 .send({ from: this.state.account, gas: 1000000 });
-            window.location.reload();
         };
+        const verifyUser = async (verifiedStatus, address) => {
+            await verifyVoter(verifiedStatus, address);
+            await verifyWhitelist(address);
+            window.location.reload();
+        }
         return (
             <>
                 {voter.isVerified ? (
@@ -124,22 +127,12 @@ export default class Verification extends Component {
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Voted</th>
-                                <th>Action</th>
                             </tr>
                             <tr>
                                 <td>{voter.address}</td>
                                 <td>{voter.name}</td>
                                 <td>{voter.phone}</td>
                                 <td>{voter.hasVoted ? "True" : "False"}</td>
-                                <td>
-                                    <button
-                                        type='button'
-                                        className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer"
-                                        onClick={() => verifyWhitelist(voter.address)}
-                                    >
-                                        Add WhiteList
-                                    </button>
-                                </td>
                             </tr>
                         </table>
                     </div>
@@ -168,7 +161,7 @@ export default class Verification extends Component {
                                         type='button'
                                         className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer"
                                         disabled={voter.isVerified}
-                                        onClick={() => verifyVoter(true, voter.address)}
+                                        onClick={() => verifyUser(true, voter.address)}
                                     >
                                         Approve
                                     </button>

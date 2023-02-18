@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 // Components
-import {Navbar,NavbarAdmin,UserHome, StartEnd, Guide, Homes} from '../components';
+import { Navbar, NavbarAdmin, UserHome, StartEnd, Guide, Homes } from '../components';
 
 // Contract
 import getWeb3 from '../getWeb3';
@@ -39,6 +39,52 @@ export default class Home extends Component {
             const accounts = await web3.eth.getAccounts();
 
             const networkId = await web3.eth.net.getId();
+
+            // if (networkId !== 80001) {
+            //     window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0x13881' }] })
+            //         .then(() => {
+            //             window.location.reload();
+            //         })
+            //         .catch((error) => {
+            //             console.error(error);
+            //         });
+            // }
+
+            if (networkId !== 80001) {
+                window.ethereum.request({ method: 'net_version' })
+                    .then((networkId) => {
+                        if (networkId !== '80001') {
+                            window.ethereum.request({
+                                method: 'wallet_addEthereumChain', params: [{
+                                    chainId: '0x13881',
+                                    chainName: 'Mumbai Testnet',
+                                    nativeCurrency: {
+                                        name: 'Matic',
+                                        symbol: 'MATIC',
+                                        decimals: 18
+                                    },
+                                    rpcUrls: ['https://rpc-mumbai.maticvigil.com/'],
+                                    blockExplorerUrls: ['https://explorer-mumbai.maticvigil.com/']
+                                }]
+                            })
+                                .then(() => {
+                                    return window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0x13881' }] });
+                                })
+                                .then(() => {
+                                    window.location.reload();
+                                })
+                                .catch((error) => {
+                                    console.error(error);
+                                });
+                        } else {
+                            window.location.reload();
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+
             const deployedNetwork = Election.networks[networkId];
             const instance = new web3.eth.Contract(
                 Election.abi,
