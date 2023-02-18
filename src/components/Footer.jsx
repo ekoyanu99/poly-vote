@@ -19,6 +19,9 @@ const Footer = () => (
                 <a href="/Results" className="text-white text-base text-center mx-2 cursor-pointer">
                     Results
                 </a>
+                <a href="https://docs.sinaucrypto.my.id/" className="text-white text-base text-center mx-2 cursor-pointer">
+                    FAQ
+                </a>
             </div>
         </div>
 
