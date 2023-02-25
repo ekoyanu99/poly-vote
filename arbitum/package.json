@@ -1,0 +1,43 @@
+{
+  "name": "arbitrum-box",
+  "version": "1.0.0",
+  "description": "Boilerplate code to compile, migrate, and test a Truffle project on Arbitrum",
+  "main": "truffle-config.arbitrum.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm run test:arbitrum --network=$network",
+    "installLocalArbitrum": "git clone -b master https://github.com/offchainlabs/arbitrum.git",
+    "startLocalEthereum": "cd arbitrum && git submodule update --init --recursive && yarn && yarn build && yarn docker:build:geth && yarn docker:geth",
+    "startLocalArbitrum": "cd arbitrum && yarn demo:initialize && yarn demo:deploy",
+    "compile:ethereum": "truffle compile",
+    "compile:arbitrum": "truffle compile --config truffle-config.arbitrum.js",
+    "migrate:ethereum": "truffle migrate",
+    "migrate:arbitrum": "truffle migrate --config truffle-config.arbitrum.js --network $npm_config_network",
+    "test:ethereum": "truffle test",
+    "test:arbitrum": "truffle test --config truffle-config.arbitrum.js --network $npm_config_network"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/truffle-box/arbitrum-box.git"
+  },
+  "keywords": [
+    "Arbitrum",
+    "Ethereum",
+    "Truffle",
+    "Layer",
+    "2"
+  ],
+  "author": "Faina Shalts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/truffle-box/arbitrum-box/issues"
+  },
+  "homepage": "https://github.com/truffle-box/arbitrum-box#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@truffle/hdwallet-provider": "^1.4.1",
+    "dotenv": "^10.0.0"
+  }
+}

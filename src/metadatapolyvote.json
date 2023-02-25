@@ -1,0 +1,16 @@
+{
+    "name": "Proof of Vote Pass",
+    "description": "This NFT represents a voter's proof of participation in an election created by PolyVote",
+    "image": "https://ipfs.filebase.io/ipfs/QmZ7AYtGTpqULHXEnjmLHsQmGNyErm9diyxWU7eDdBbU5k",
+    "attributes": [
+        {
+            "display_type": "boost_number",
+            "trait_type": "Vote Count",
+            "value": 1
+        },
+        {
+            "trait_type": "Issuer",
+            "value": "PolyVote"
+        }
+    ]
+}
