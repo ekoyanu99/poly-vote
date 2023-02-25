@@ -50,40 +50,40 @@ export default class Home extends Component {
             //         });
             // }
 
-            if (networkId !== 80001) {
-                window.ethereum.request({ method: 'net_version' })
-                    .then((networkId) => {
-                        if (networkId !== '80001') {
-                            window.ethereum.request({
-                                method: 'wallet_addEthereumChain', params: [{
-                                    chainId: '0x13881',
-                                    chainName: 'Mumbai Testnet',
-                                    nativeCurrency: {
-                                        name: 'Matic',
-                                        symbol: 'MATIC',
-                                        decimals: 18
-                                    },
-                                    rpcUrls: ['https://rpc-mumbai.maticvigil.com/'],
-                                    blockExplorerUrls: ['https://explorer-mumbai.maticvigil.com/']
-                                }]
-                            })
-                                .then(() => {
-                                    return window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0x13881' }] });
-                                })
-                                .then(() => {
-                                    window.location.reload();
-                                })
-                                .catch((error) => {
-                                    console.error(error);
-                                });
-                        } else {
-                            window.location.reload();
-                        }
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
-            }
+            // if (networkId !== 80001) {
+            //     window.ethereum.request({ method: 'net_version' })
+            //         .then((networkId) => {
+            //             if (networkId !== '80001') {
+            //                 window.ethereum.request({
+            //                     method: 'wallet_addEthereumChain', params: [{
+            //                         chainId: '0x13881',
+            //                         chainName: 'Mumbai Testnet',
+            //                         nativeCurrency: {
+            //                             name: 'Matic',
+            //                             symbol: 'MATIC',
+            //                             decimals: 18
+            //                         },
+            //                         rpcUrls: ['https://rpc-mumbai.maticvigil.com/'],
+            //                         blockExplorerUrls: ['https://explorer-mumbai.maticvigil.com/']
+            //                     }]
+            //                 })
+            //                     .then(() => {
+            //                         return window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0x13881' }] });
+            //                     })
+            //                     .then(() => {
+            //                         window.location.reload();
+            //                     })
+            //                     .catch((error) => {
+            //                         console.error(error);
+            //                     });
+            //             } else {
+            //                 window.location.reload();
+            //             }
+            //         })
+            //         .catch((error) => {
+            //             console.error(error);
+            //         });
+            // }
 
             const deployedNetwork = Election.networks[networkId];
             const instance = new web3.eth.Contract(
