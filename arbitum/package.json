@@ -35,9 +35,9 @@
     "url": "https://github.com/truffle-box/arbitrum-box/issues"
   },
   "homepage": "https://github.com/truffle-box/arbitrum-box#readme",
-  "dependencies": {},
   "devDependencies": {
     "@truffle/hdwallet-provider": "^1.4.1",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "truffle-plugin-verify": "^0.6.1"
   }
 }
