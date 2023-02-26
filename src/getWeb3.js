@@ -28,7 +28,8 @@ const getWeb3 = () =>
                 const provider = new Web3.providers.HttpProvider(
                     // "https://polygon-mumbai.g.alchemy.com/v2/pZtMYFAth5mw1UecE_l_TZucPxFMYnzF"
                     // "https://rpc.ankr.com/polygon_mumbai"
-                    "https://arb-goerli.g.alchemy.com/v2/IEyAkqlSD2ZldTR8BUTlMtPJVv5riLiQ"
+                    // "https://arb-goerli.g.alchemy.com/v2/IEyAkqlSD2ZldTR8BUTlMtPJVv5riLiQ"
+                    "https://eth-goerli.g.alchemy.com/v2/MRRdG0d-MJXVwl5ogBT_pkUHlbWcqxkl"
                 );
                 const web3 = new Web3(provider);
                 console.log("No web3 instance injected, using Local web3.");
