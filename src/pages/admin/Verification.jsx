@@ -105,12 +105,12 @@ export default class Verification extends Component {
         const verifyVoter = async (verifiedStatus, address) => {
             await this.state.ElectionInstance.methods
                 .verifyVoter(verifiedStatus, address)
-                .send({ from: this.state.account, gas: 1000000 });
+                .send({ from: this.state.account });
         };
         const verifyWhitelist = async (address) => {
             await this.state.PolyVoteInstance.methods
                 .addWhiteList(address)
-                .send({ from: this.state.account, gas: 1000000 });
+                .send({ from: this.state.account });
         };
         const verifyUser = async (verifiedStatus, address) => {
             await verifyVoter(verifiedStatus, address);

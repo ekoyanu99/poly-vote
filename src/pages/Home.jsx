@@ -63,8 +63,8 @@ export default class Home extends Component {
                                         symbol: 'MATIC',
                                         decimals: 18
                                     },
-                                    rpcUrls: ['https://rpc-mumbai.maticvigil.com/'],
-                                    blockExplorerUrls: ['https://explorer-mumbai.maticvigil.com/']
+                                    rpcUrls: ['https://polygon-mumbai.g.alchemy.com/v2/pZtMYFAth5mw1UecE_l_TZucPxFMYnzF'],
+                                    blockExplorerUrls: ['https://mumbai.polygonscan.com/']
                                 }]
                             })
                                 .then(() => {
@@ -147,7 +147,7 @@ export default class Home extends Component {
     endElection = async () => {
         await this.state.ElectionInstance.methods
             .endElection()
-            .send({ from: this.state.account, gas: 1000000 });
+            .send({ from: this.state.account });
         window.location.reload();
     };
     // register and start election
@@ -160,7 +160,7 @@ export default class Home extends Component {
                 data.electionTitle.toLowerCase(),
                 data.organizationTitle.toLowerCase()
             )
-            .send({ from: this.state.account, gas: 1000000 });
+            .send({ from: this.state.account });
         window.location.reload();
     };
 

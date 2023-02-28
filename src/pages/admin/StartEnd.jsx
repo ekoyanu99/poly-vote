@@ -73,13 +73,13 @@ export default class StartEnd extends Component {
     startElection = async () => {
         await this.state.ElectionInstance.methods
             .startElection()
-            .send({ from: this.state.account, gas: 1000000 });
+            .send({ from: this.state.account });
         window.location.reload();
     };
     endElection = async () => {
         await this.state.ElectionInstance.methods
             .endElection()
-            .send({ from: this.state.account, gas: 1000000 });
+            .send({ from: this.state.account });
         window.location.reload();
     };
 

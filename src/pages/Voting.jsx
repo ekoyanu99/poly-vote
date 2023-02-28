@@ -126,7 +126,7 @@ export default class Voting extends Component {
         const castVote = async (id) => {
             await this.state.ElectionInstance.methods
                 .vote(id)
-                .send({ from: this.state.account, gas: 1000000 });
+                .send({ from: this.state.account });
             window.location.reload();
         };
         const confirmVote = (id, header) => {
@@ -176,7 +176,7 @@ export default class Voting extends Component {
         const safeMint = async (address) => {
             await this.state.PolyVoteInstance.methods
                 .safeMint(address, "https://ipfs.filebase.io/ipfs/QmRGFGbufiNCoS1vv2x26jxzdjMkEZqkLBo8MSRYqQokfC")
-                .send({ from: this.state.account, gas: 1000000 });
+                .send({ from: this.state.account });
             window.location.reload();
         };
 

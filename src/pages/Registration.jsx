@@ -127,7 +127,7 @@ export default class Registration extends Component {
     registerAsVoter = async () => {
         await this.state.ElectionInstance.methods
             .registerAsVoter(this.state.voterName, this.state.voterPhone)
-            .send({ from: this.state.account, gas: 1000000 });
+            .send({ from: this.state.account });
         window.location.reload();
     };
     render() {
