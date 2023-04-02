@@ -26,8 +26,8 @@ const getWeb3 = () =>
             // Fallback to localhost; use dev console port by default...
             else {
                 const provider = new Web3.providers.HttpProvider(
-                    "https://polygon-mumbai.g.alchemy.com/v2/pZtMYFAth5mw1UecE_l_TZucPxFMYnzF"
-                    // "https://rpc.ankr.com/polygon_mumbai"
+                    // "https://polygon-mumbai.g.alchemy.com/v2/pZtMYFAth5mw1UecE_l_TZucPxFMYnzF"
+                    "https://rpc.ankr.com/polygon_mumbai"
                     // "https://arb-goerli.g.alchemy.com/v2/IEyAkqlSD2ZldTR8BUTlMtPJVv5riLiQ"
                     // "https://eth-goerli.g.alchemy.com/v2/MRRdG0d-MJXVwl5ogBT_pkUHlbWcqxkl"
                 );

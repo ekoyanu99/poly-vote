@@ -63,7 +63,7 @@ export default class Home extends Component {
                                         symbol: 'MATIC',
                                         decimals: 18
                                     },
-                                    rpcUrls: ['https://polygon-mumbai.g.alchemy.com/v2/pZtMYFAth5mw1UecE_l_TZucPxFMYnzF'],
+                                    rpcUrls: ['https://rpc.ankr.com/polygon_mumbai'],
                                     blockExplorerUrls: ['https://mumbai.polygonscan.com/']
                                 }]
                             })
