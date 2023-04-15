@@ -24,7 +24,7 @@ Tiap aktivitas transasksi membutuhkan fees berupa MATIC
 4. Buka broswer ketika url > _localhost:3000_
 
 ## Push to Docker Hub
-1. Jalankan _docker tag genesis:latest new-repo:tagname_.
+1. Jalankan _docker tag genesis:latest new-repo:tagnametage_.
 2. Jalankan _docker push new-repo:tagname_.
 
 ## Docker to GCP via Artifact Repository
