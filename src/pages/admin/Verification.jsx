@@ -113,7 +113,81 @@ export default class Verification extends Component {
         }
     };
 
-    renderUnverifiedVoters = (voter) => {
+    // renderUnverifiedVoters = (voter) => {
+    //     const verifyVoter = async (verifiedStatus, address) => {
+    //         await this.state.ElectionInstance.methods
+    //             .verifyVoter(verifiedStatus, address)
+    //             .send({ from: this.state.account });
+    //     };
+    //     const verifyWhitelist = async (address) => {
+    //         await this.state.PolyVoteInstance.methods
+    //             .addWhiteList(address)
+    //             .send({ from: this.state.account });
+    //     };
+    //     const verifyUser = async (verifiedStatus, address) => {
+    //         await verifyVoter(verifiedStatus, address);
+    //         await verifyWhitelist(address);
+    //         window.location.reload();
+    //     }
+    //     return (
+    //         <>
+    //             {voter.isVerified ? (
+    //                 <div className='mt-5'>
+    //                     <table className={`table text-center border-separate border-spacing-2 border border-slate-500 ${companyCommonStyles}`}>
+    //                         <tr>
+    //                             <th>Account address</th>
+    //                             <th>Name</th>
+    //                             <th>Phone</th>
+    //                             <th>Voted</th>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>{voter.address}</td>
+    //                             <td>{voter.name}</td>
+    //                             <td>{voter.phone}</td>
+    //                             <td>{voter.hasVoted ? "True" : "False"}</td>
+    //                         </tr>
+    //                     </table>
+    //                 </div>
+    //             ) :
+    //                 <div className='mt-5'>
+    //                     <table className={`table text-center border-separate border-spacing-2 border border-slate-500 ${companyCommonStyles}`}>
+
+    //                         <tr>
+    //                             <th>Account address</th>
+    //                             <th>Name</th>
+    //                             <th>Phone</th>
+    //                             <th>Voted</th>
+    //                             <th>Verified</th>
+    //                             <th>Registered</th>
+    //                             <th>Action</th>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>{voter.address}</td>
+    //                             <td>{voter.name}</td>
+    //                             <td>{voter.phone}</td>
+    //                             <td>{voter.hasVoted ? "True" : "False"}</td>
+    //                             <td>{voter.isVerified ? "True" : "False"}</td>
+    //                             <td>{voter.isRegistered ? "True" : "False"}</td>
+    //                             <td>
+    //                                 <button
+    //                                     type='button'
+    //                                     className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer"
+    //                                     disabled={voter.isVerified}
+    //                                     onClick={() => verifyUser(true, voter.address)}
+    //                                 >
+    //                                     Approve
+    //                                 </button>
+    //                             </td>
+    //                         </tr>
+    //                     </table>
+    //                 </div>
+    //             }
+    //         </>
+    //     );
+    // };
+
+    renderVoters = (verified) => {
+        const voters = this.state.voters.filter((voter) => voter.isVerified === verified);
         const verifyVoter = async (verifiedStatus, address) => {
             await this.state.ElectionInstance.methods
                 .verifyVoter(verifiedStatus, address)
@@ -128,63 +202,47 @@ export default class Verification extends Component {
             await verifyVoter(verifiedStatus, address);
             await verifyWhitelist(address);
             window.location.reload();
-        }
+        };
         return (
-            <>
-                {voter.isVerified ? (
-                    <div className='mt-5'>
-                        <table className={`table text-center border-separate border-spacing-2 border border-slate-500 ${companyCommonStyles}`}>
-                            <tr>
-                                <th>Account address</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Voted</th>
-                            </tr>
-                            <tr>
-                                <td>{voter.address}</td>
-                                <td>{voter.name}</td>
-                                <td>{voter.phone}</td>
-                                <td>{voter.hasVoted ? "True" : "False"}</td>
-                            </tr>
-                        </table>
-                    </div>
-                ) :
-                    <div className='mt-5'>
-                        <table className={`table text-center border-separate border-spacing-2 border border-slate-500 ${companyCommonStyles}`}>
-
-                            <tr>
-                                <th>Account address</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Voted</th>
-                                <th>Verified</th>
-                                <th>Registered</th>
-                                <th>Action</th>
-                            </tr>
-                            <tr>
+            <div className='mt-5'>
+                <table className={`table text-center border-separate border-spacing-2 border border-slate-500 ${companyCommonStyles}`}>
+                    <thead>
+                        <tr>
+                            <th>Account address</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Voted</th>
+                            <th>Verified</th>
+                            {verified ? null : <th>Action</th>}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {voters.map((voter) => (
+                            <tr key={voter.address}>
                                 <td>{voter.address}</td>
                                 <td>{voter.name}</td>
                                 <td>{voter.phone}</td>
                                 <td>{voter.hasVoted ? "True" : "False"}</td>
                                 <td>{voter.isVerified ? "True" : "False"}</td>
-                                <td>{voter.isRegistered ? "True" : "False"}</td>
-                                <td>
-                                    <button
-                                        type='button'
-                                        className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer"
-                                        disabled={voter.isVerified}
-                                        onClick={() => verifyUser(true, voter.address)}
-                                    >
-                                        Approve
-                                    </button>
-                                </td>
+                                {!verified && !voter.isVerified && (
+                                    <td>
+                                        <button
+                                            type='button'
+                                            className="text-white w-full mt-2 border-[1px] p-2 border-[#fffff0] hover:bg-[#ff0000] rounded-full cursor-pointer"
+                                            onClick={() => verifyUser(true, voter.address)}
+                                        >
+                                            Approve
+                                        </button>
+                                    </td>
+                                )}
                             </tr>
-                        </table>
-                    </div>
-                }
-            </>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         );
     };
+
     render() {
         if (!this.state.web3) {
             return (
@@ -205,20 +263,25 @@ export default class Verification extends Component {
         return (
             <>
                 <NavbarAdmin />
-                <div className="min-h-screen">
-                    <div className='flex w-full justify-center items-center'>
+                <div className="min-h-screen flex flex-col justify-center items-center">
+                    <div className='flex flex-col w-full items-center justify-start'>
                         <div className='flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10'>
-                            <h3 className='text-white'>Verification</h3>
+                            <h3 className='text-white text-3xl font-bold mb-4'>Verification</h3>
                             <small className='text-white'>Total Voters: {this.state.voters.length}</small>
-                            <div className='flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10'>
+                            <div className='flex flex-col w-full items-center justify-start mt-8'>
                                 {this.state.voters.length < 0 ? (
                                     <p className="text-white">None has registered yet.</p>
                                 ) : (
                                     <>
-                                        <p className='text-white'>List of registered voters</p>
-                                        <div className='flex flex-wrap'>
-                                            <div className="w-1/3 p-2">
-                                                {this.state.voters.map(this.renderUnverifiedVoters)}
+                                        <p className="text-white text-2xl font-bold mb-4">List of Registered Voters</p>
+                                        <div className="flex flex-col w-full justify-center items-center">
+                                            <div className="w-full p-2 flex justify-center">
+                                                <div className="overflow-x-auto mx-auto">
+                                                    <h2 className="text-white text-center text-lg font-bold mb-4">Unverified Voters</h2>
+                                                    {this.renderVoters(false)}
+                                                    <h2 className="text-white text-center text-lg font-bold mb-4 pt-4 mt-4">Verified Voters</h2>
+                                                    {this.renderVoters(true)}
+                                                </div>
                                             </div>
                                         </div>
                                     </>
