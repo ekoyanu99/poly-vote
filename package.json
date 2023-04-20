@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@tailwindcss/forms": "^0.5.3",
-    "ajv": "^6.9.1",
+    "ajv": "^6.12.3",
     "ajv-keywords": "^3.5.2",
     "antd": "^5.1.7",
     "chart.js": "^4.2.0",
