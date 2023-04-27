@@ -15880,12 +15880,12 @@
     "80001": {
       "events": {},
       "links": {},
-      "address": "0xba18aD38059d42F5ae95fbDc3e6D06Ea52edb1ad",
-      "transactionHash": "0xb24c8608a48586327288c14a14e9caa6b39cc438d7c91be218b9aa7d68d873a7"
+      "address": "0x66241766086917439378C635b83073E6a895d166",
+      "transactionHash": "0xa0c92747f34ad8cff01c31d933be70989bb457b32777d1c8e469d489bdd83f44"
     }
   },
   "schemaVersion": "3.4.10",
-  "updatedAt": "2023-02-26T13:26:47.785Z",
+  "updatedAt": "2023-04-27T02:54:33.549Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
