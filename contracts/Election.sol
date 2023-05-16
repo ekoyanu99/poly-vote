@@ -36,6 +36,8 @@ contract Election {
     }
     mapping(uint256 => Candidate) public candidateDetails;
 
+    event CandidateAdded(uint256 candidateId, string header, string slogan);
+
     // Adding new candidates
     function addCandidate(
         string memory _header,
@@ -53,6 +55,11 @@ contract Election {
         });
         candidateDetails[candidateCount] = newCandidate;
         candidateCount += 1;
+        emit CandidateAdded(
+            newCandidate.candidateId,
+            newCandidate.header,
+            newCandidate.slogan
+        );
     }
 
     // Modeling a Election Details
@@ -64,6 +71,14 @@ contract Election {
         string organizationTitle;
     }
     ElectionDetails electionDetails;
+
+    event ElectionDetailsSet(
+        string adminName,
+        string adminEmail,
+        string adminTitle,
+        string electionTitle,
+        string organizationTitle
+    );
 
     function setElectionDetails(
         string memory _adminName,
@@ -77,14 +92,13 @@ contract Election {
         onlyAdmin
     {
         electionDetails = ElectionDetails(
-            _adminName,
-            _adminEmail,
-            _adminTitle,
-            _electionTitle,
-            _organizationTitle
+            _adminName, _adminEmail, _adminTitle, _electionTitle, _organizationTitle
         );
         start = true;
         end = false;
+        emit ElectionDetailsSet(
+            _adminName, _adminEmail, _adminTitle, _electionTitle, _organizationTitle
+        );
     }
 
     // Get Elections details
@@ -132,6 +146,8 @@ contract Election {
     address[] public voters; // Array of address to store address of voters
     mapping(address => Voter) public voterDetails;
 
+    event VoterRegistered(address voterAddress, string name, string phone);
+
     // Request to be added as voter
     function registerAsVoter(string memory _name, string memory _phone) public {
         Voter memory newVoter = Voter({
@@ -145,7 +161,14 @@ contract Election {
         voterDetails[msg.sender] = newVoter;
         voters.push(msg.sender);
         voterCount += 1;
+        emit VoterRegistered(
+            newVoter.voterAddress,
+            newVoter.name,
+            newVoter.phone
+        );
     }
+
+    event VoterVerified(address voterAddress, bool isVerified);
 
     // Verify voter
     function verifyVoter(
@@ -157,9 +180,13 @@ contract Election {
         onlyAdmin
     {
         voterDetails[voterAddress].isVerified = _verifedStatus;
+
+        emit VoterVerified(voterAddress, _verifedStatus);
     }
 
     mapping(address => bool) public voted;
+
+    event Voted(address voterAddress);
 
     // Vote
     function vote(uint256 candidateId) public {
@@ -168,9 +195,10 @@ contract Election {
         require(voterDetails[msg.sender].isVerified == true);
         require(start == true);
         require(end == false);
-        candidateDetails[candidateId].voteCount += 1;
         voterDetails[msg.sender].hasVoted = true;
+        candidateDetails[candidateId].voteCount += 1;
         voted[msg.sender] = true;
+        emit Voted(msg.sender);
     }
 
     // End election

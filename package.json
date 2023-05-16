@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@openzeppelin/contracts": "^4.8.0",
+    "@openzeppelin/contracts": "^4.8.3",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@truffle/contract": "^4.6.5",
-    "@truffle/hdwallet-provider": "^2.1.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@truffle/contract": "^4.6.21",
+    "@truffle/hdwallet-provider": "^2.1.11",
     "dotenv": "^16.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "web3": "^1.8.0"
+    "web-vitals": "^3.3.1",
+    "web3": "^1.10.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,6 +41,6 @@
     ]
   },
   "devDependencies": {
-    "truffle-plugin-verify": "^0.5.31"
+    "truffle-plugin-verify": "^0.6.3"
   }
 }

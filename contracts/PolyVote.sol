@@ -7,14 +7,10 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-import "./Election.sol";
-
 contract PolyVote is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
     mapping(address => bool) internal isWhiteListed;
-
-    Election private _election;
 
     constructor() ERC721("PolyVote", "PVT") {
         _tokenIdCounter.increment();
@@ -42,7 +38,6 @@ contract PolyVote is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     uint256 maxSupply = 10000;
 
     function safeMint(address to, string memory uri) public {
-        // require(_election.getStart() == true);
         require(
             isWhiteListed[msg.sender] == true,
             "User not authorized to mint"

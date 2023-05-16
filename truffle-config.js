@@ -5,7 +5,7 @@ const HDWalletProvider = require("@truffle/hdwallet-provider");
 const mnemonic = process.env.MNEMONIC;
 
 //API key of your Datahub account for Avalanche Fuji test network
-const APIKEY = process.env.APIKEY;
+//const APIKEY = process.env.APIKEY;
 
 module.exports = {
   networks: {
@@ -14,7 +14,7 @@ module.exports = {
       port: 9545,
       network_id: ""
     },
-    polygon: {
+    mumbai: {
       provider: function() {
         return new HDWalletProvider({mnemonic, providerOrUrl: `https://rpc.ankr.com/polygon_mumbai`})
       },
@@ -22,8 +22,7 @@ module.exports = {
       confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true,
-      gas: 6000000,
-      gasPrice: 10000000000,
+      chainId: 80001
     }
   },
   compilers:{
@@ -32,7 +31,8 @@ module.exports = {
       optimizer: {
       enabled: true,
       runs: 200
-    }
+    },
+    evmVersion: "byzantium",
   },
   },
   plugins: [
