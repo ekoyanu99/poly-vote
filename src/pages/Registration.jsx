@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-// import CryptoJS from 'crypto-js';
+import CryptoJS from 'crypto-js';
 import { Navbar, NavbarAdmin, NotInit, Loader } from '../components';
 
 import getWeb3 from '../getWeb3';
 import Election from '../utils/Election.json';
 
-// // Encrypt data using AES encryption
-// function encryptData(data, secretKey) {
-//     const ciphertext = CryptoJS.AES.encrypt(data, secretKey).toString();
-//     return ciphertext;
-// };
+// Encrypt data using AES encryption
+function encryptData(data, secretKey) {
+    const ciphertext = CryptoJS.AES.encrypt(data, secretKey).toString();
+    return ciphertext;
+};
 
-// // Decrypt data using AES decryption
-// function decryptData(ciphertext, secretKey) {
-//     const bytes = CryptoJS.AES.decrypt(ciphertext, secretKey);
-//     const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
-//     return decryptedData;
-// };
+// Decrypt data using AES decryption
+function decryptData(ciphertext, secretKey) {
+    const bytes = CryptoJS.AES.decrypt(ciphertext, secretKey);
+    const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+    return decryptedData;
+};
 
 export default class Registration extends Component {
     constructor(props) {
@@ -40,7 +40,7 @@ export default class Registration extends Component {
                 isVerified: false,
                 isRegistered: false,
             },
-            // secretKey: "exampleSecretKey",
+            secretKey: process.env.REACT_APP_SECRET_KEY,
         };
     }
 
@@ -114,15 +114,15 @@ export default class Registration extends Component {
             const voter = await this.state.ElectionInstance.methods
                 .voterDetails(this.state.account)
                 .call();
-            // const decryptedName = decryptData(voter.name, this.state.secretKey);
-            // const decryptedPhone = decryptData(voter.phone, this.state.secretKey);
+            const decryptedName = decryptData(voter.name, this.state.secretKey);
+            const decryptedPhone = decryptData(voter.phone, this.state.secretKey);
             this.setState({
                 currentVoter: {
                     address: voter.voterAddress,
-                    name: voter.name,
-                    phone: voter.phone,
-                    // name: decryptedName,
-                    // phone: decryptedPhone,
+                    // name: voter.name,
+                    // phone: voter.phone,
+                    name: decryptedName,
+                    phone: decryptedPhone,
                     hasVoted: voter.hasVoted,
                     isVerified: voter.isVerified,
                     isRegistered: voter.isRegistered,
@@ -143,20 +143,20 @@ export default class Registration extends Component {
     updateVoterPhone = (event) => {
         this.setState({ voterPhone: event.target.value });
     };
-    registerAsVoter = async () => {
-        await this.state.ElectionInstance.methods
-            .registerAsVoter(this.state.voterName, this.state.voterPhone)
-            .send({ from: this.state.account });
-        window.location.reload();
-    };
     // registerAsVoter = async () => {
-    //     const encryptedName = encryptData(this.state.voterName, this.state.secretKey);
-    //     const encryptedPhone = encryptData(this.state.voterPhone, this.state.secretKey);
     //     await this.state.ElectionInstance.methods
-    //         .registerAsVoter(encryptedName, encryptedPhone)
+    //         .registerAsVoter(this.state.voterName, this.state.voterPhone)
     //         .send({ from: this.state.account });
     //     window.location.reload();
     // };
+    registerAsVoter = async () => {
+        const encryptedName = encryptData(this.state.voterName, this.state.secretKey);
+        const encryptedPhone = encryptData(this.state.voterPhone, this.state.secretKey);
+        await this.state.ElectionInstance.methods
+            .registerAsVoter(encryptedName, encryptedPhone)
+            .send({ from: this.state.account });
+        window.location.reload();
+    };
     render() {
         if (!this.state.web3) {
             return (

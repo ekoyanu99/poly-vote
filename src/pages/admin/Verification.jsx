@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-// import CryptoJS from 'crypto-js';
+import CryptoJS from 'crypto-js';
 import { Navbar, NavbarAdmin, Loader, AdminOnly } from '../../components';
 
 import getWeb3 from '../../getWeb3';
 import Election from '../../utils/Election.json';
 import PolyVote from '../../utils/PolyVote.json';
 
-// // Decrypt data using AES decryption
-// function decryptData(ciphertext, secretKey) {
-//     const bytes = CryptoJS.AES.decrypt(ciphertext, secretKey);
-//     const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
-//     return decryptedData;
-// };
+// Decrypt data using AES decryption
+function decryptData(ciphertext, secretKey) {
+    const bytes = CryptoJS.AES.decrypt(ciphertext, secretKey);
+    const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+    return decryptedData;
+};
 
 const companyCommonStyles =
     "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
@@ -28,7 +28,7 @@ export default class Verification extends Component {
             isAdmin: false,
             voterCount: undefined,
             voters: [],
-            secretKey: "exampleSecretKey",
+            secretKey: process.env.REACT_APP_SECRET_KEY,
         };
     }
 
@@ -84,14 +84,14 @@ export default class Verification extends Component {
                 const voter = await this.state.ElectionInstance.methods
                     .voterDetails(voterAddress)
                     .call();
-                // const decryptedName = decryptData(voter.name, this.state.secretKey);
-                // const decryptedPhone = decryptData(voter.phone, this.state.secretKey);
+                const decryptedName = decryptData(voter.name, this.state.secretKey);
+                const decryptedPhone = decryptData(voter.phone, this.state.secretKey);
                 newVoters.push({
                     address: voter.voterAddress,
-                    name: voter.name,
-                    phone: voter.phone,
-                    // name: decryptedName,
-                    // phone: decryptedPhone,
+                    // name: voter.name,
+                    // phone: voter.phone,
+                    name: decryptedName,
+                    phone: decryptedPhone,
                     hasVoted: voter.hasVoted,
                     isVerified: voter.isVerified,
                     isRegistered: voter.isRegistered,
