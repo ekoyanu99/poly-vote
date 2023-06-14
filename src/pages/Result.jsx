@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {Navbar, NavbarAdmin, NotInit, Loader} from '../components';
+import { Navbar, NavbarAdmin, NotInit, Loader } from '../components';
 
 import getWeb3 from '../getWeb3';
 import Election from '../utils/Election.json';
@@ -113,13 +113,9 @@ export default class Result extends Component {
             };
             const options = {
                 scales: {
-                    yAxes: [
-                        {
-                            ticks: {
-                                beginAtZero: true,
-                            }
-                        }
-                    ]
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             };
             this.chart = new Chart(ctx, {
@@ -127,6 +123,7 @@ export default class Result extends Component {
                 data: data,
                 options: options
             });
+            
         } catch (error) {
             // Catch any errors for any of the above operations.
             // alert(
