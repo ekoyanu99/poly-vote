@@ -1,50 +1,33 @@
 {
-  "name": "genesis",
+  "name": "alpha",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "marketplace": "npx create-web3-dapp marketplace"
+  },
   "dependencies": {
-    "@tailwindcss/forms": "^0.5.3",
-    "antd": "^5.1.7",
+    "@rainbow-me/rainbowkit": "^0.12.4",
+    "@tailwindcss/forms": "^0.5.6",
+    "alchemy-sdk": "^2.6.2",
     "chart.js": "^4.2.0",
     "crypto-js": "^4.1.1",
-    "react": "^18.2.0",
+    "next": "13.1.2",
+    "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.0",
-    "react-icons": "^4.7.1",
-    "react-router-dom": "^5.3.4",
-    "web3": "^1.8.0",
-    "web3modal": "^1.9.12"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.46.0",
+    "react-icons": "^4.10.1",
+    "wagmi": "^0.12.6"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.14",
-    "dotenv": "^16.0.3",
-    "postcss": "^8.4.21",
-    "react-scripts": "^5.0.1",
+    "autoprefixer": "^10.4.15",
+    "eslint": "8.36.0",
+    "eslint-config-next": "13.2.4",
+    "postcss": "^8.4.29",
     "tailwindcss": "^3.2.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }

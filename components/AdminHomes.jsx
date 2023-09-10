@@ -123,6 +123,10 @@ export default function AdminHomes() {
         registerElection(data);
     };
 
+    const EMsg = (props) => {
+        return <span style={{ color: "tomato" }}>{props.msg}</span>;
+    };
+
     return (
 
         <div className="flex w-full justify-center items-center">
@@ -238,7 +242,7 @@ export default function AdminHomes() {
                                                     <button type="button" className={btn}>
                                                         <a
                                                             title="Add a new "
-                                                            href="/addCandidate"
+                                                            href="/AddCandidate"
                                                             className="text-white"
                                                         >
                                                             Add Candidate
