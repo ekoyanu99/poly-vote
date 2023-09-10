@@ -30,3 +30,4 @@ Tiap aktivitas transasksi membutuhkan fees berupa MATIC
 ## Credits
 
 Author: Yanuarso (Twitter: [ekoyanu99](https://twitter.com/ekoyanu99)) 
+Published on [IJCS](http://ijcs.stmikindonesia.ac.id/ijcs/index.php/ijcs/article/view/3234) 
