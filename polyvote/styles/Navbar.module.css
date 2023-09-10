@@ -1,0 +1,24 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding: 2rem 4rem 0.8rem 4rem;
+	gap: 2rem;
+	margin-bottom: 4rem;
+}
+
+.alchemy_logo{
+	width: 8rem;
+	cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 1rem 2rem 0.4rem 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .alchemy_logo {
+        width: 5rem; /* Adjust the size for mobile screens */
+    }
+}
